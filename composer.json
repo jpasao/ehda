@@ -1,0 +1,15 @@
+{
+    "autoload":{
+        "psr-0":{
+            "Google//": "src/"
+        },
+        "classmap":[
+            "vendor/google/apiclient/src/Google/Service"
+        ]
+    },
+    "require": {
+        "google/auth": "^1.0",
+        "google/apiclient": "^2.0",
+        "google/apiclient-services": "~0.13"
+    }
+}

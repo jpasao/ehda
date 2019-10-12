@@ -1,0 +1,82 @@
+#appointmentCal {
+    width: 90%;
+    margin: 0px auto;
+}
+.time {
+    width: auto;
+}
+.tooltip.bs-tooltip-right .tooltip-inner {
+    background:#444 !important;
+}
+.tooltip.bs-tooltip-auto[x-placement^=right] .arrow::before, .tooltip.bs-tooltip-right .arrow::before {
+    margin-top: -3px;
+    content: "";
+    border-width: 5px 5px 5px 0;
+    border-right-color: #444;
+}
+.nextHour {
+    background-image: linear-gradient(45deg, #fff 41.67%, #e3e3e3 41.67%, #e3e3e3 50%, #fff 50%, #fff 91.67%, #e3e3e3 91.67%, #e3e3e3 100%);
+    background-size: 8.49px 8.49px;
+    border-color: #fff;
+    cursor: not-allowed;
+}
+.fa-spin{
+    animation-duration: 0.7s;
+}
+@media(min-width: 600px){
+    #appointmentCal {
+        height: 500px; 
+        font-size: 14px;
+    }
+}
+@media (max-width: 600px){
+    #appointmentCal {     
+        font-size: 10px;
+    }
+    .fc-toolbar {
+        font-size: .9em;
+    }
+    .fc-toolbar h2 {
+        font-size: 12px;
+        white-space: normal !important;
+    }
+    .fc-more-cell a {
+        display: block;
+        width: 85%;
+        margin: 1px auto 0 auto;
+        border-radius: 3px;
+        background: grey;
+        color: transparent;
+        overflow: hidden;
+        height: 4px;
+    }
+    .fc-more-popover {
+        width: 100px;
+    }
+    .fc-view-month .fc-event, .fc-view-agendaWeek .fc-event, .fc-content {
+        font-size: 0;
+        overflow: hidden;
+        height: 2px;
+    }
+    .fc-view-agendaWeek .fc-event-vert {
+        font-size: 0;
+        overflow: hidden;
+        width: 2px !important;
+    }
+    .fc-agenda-axis {
+        width: 20px !important;
+        font-size: .7em;
+    }
+    .fc-button-content {
+        padding: 0;
+    }
+    #appointmentCal div.fc-day-grid-container,
+    #appointmentCal div.fc-time-grid-container,
+    #appointmentCal div.fc-scroller{
+        height: 100% !important;
+    }
+    .fc-center h2 {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+}

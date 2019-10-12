@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /ehda/
+RewriteCond %{THE_REQUEST} /public/([^\s?]*)
+RewriteRule ^ %1 [L,NE,R=302]
+RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+
