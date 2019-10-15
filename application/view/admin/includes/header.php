@@ -72,38 +72,13 @@
                         <!-- Begin Navbar Menu -->
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
                             <!-- Search -->
-                            <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li>
+                            <!-- <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li> -->
                             <!-- End Search -->
                             <!-- User -->
-                            <li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo URL; ?>assets/admin/img/avatar/avatar-01.jpg" alt="..." class="avatar rounded-circle"></a>
-                                <ul aria-labelledby="user" class="user-size dropdown-menu">
-                                    <li class="welcome">
-                                        <a href="#" class="edit-profil"><i class="la la-gear"></i></a>
-                                        <img src="<?php echo URL; ?>assets/admin/img/avatar/avatar-01.jpg" alt="..." class="rounded-circle">
-                                    </li>
-                                    <li>
-                                        <a href="pages-profile.html" class="dropdown-item"> 
-                                            Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="app-mail.html" class="dropdown-item"> 
-                                            Messages
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item no-padding-bottom"> 
-                                            Settings
-                                        </a>
-                                    </li>
-                                    <li class="separator"></li>
-                                    <li>
-                                        <a href="pages-faq.html" class="dropdown-item no-padding-top"> 
-                                            Faq
-                                        </a>
-                                    </li>
-                                    <li><a rel="nofollow" href="pages-login.html" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
-                                </ul>
+                            <li class="nav-item dropdown">
+                                <button rel="nofollow" id="logout" class="dropdown-item logout text-center">
+                                    <i class="ti-power-off" title="Cerrar sesión <?php echo $userName; ?>"></i>
+                                </button>
                             </li>
                             <!-- End User -->
                         </ul>
@@ -119,25 +94,37 @@
                     <!-- Begin Side Navbar -->
                     <nav class="side-navbar box-scroll sidebar-scroll">
                         <!-- Begin Main Navigation -->
+                        <span class="heading">Secciones</span>
                         <ul class="list-unstyled">
-                            <li><a href="javascript:void(0);"><i class="la la-at"></i><span>Simple Link</span></a></li>
-                            <li><a href="#dropdown" aria-expanded="false" data-toggle="collapse"><i class="la la-puzzle-piece"></i><span>Dropdown</span></a>
-                                <ul id="dropdown" class="collapse list-unstyled pt-0">
-                                    <li><a href="javascript:void(0);">Link</a></li>
+                            <li class="active">
+                                <a href="#dropdown-posts" aria-expanded="false" data-toggle="collapse">
+                                    <i class="la la-align-left"></i><span>Entradas</span>
+                                </a>
+                                <ul id="dropdown-posts" class="collapse list-unstyled pt-0">
+                                    <li><a class="active" href="javascript:void(0);">Listado</a></li>
+                                    <li><a href="javascript:void(0);">Añadir entrada</a></li>
                                 </ul>
                             </li>
-                        </ul>
-                        <span class="heading">Title</span>
-                        <ul class="list-unstyled">
-                            <li class="active"><a href="#dropdown-db" aria-expanded="true" data-toggle="collapse"><i class="la la-columns"></i><span>Active</span></a>
-                                <ul id="dropdown-db" class="collapse list-unstyled show pt-0">
-                                    <li><a class="active" href="javascript:void(0);">Active</a></li>
-                                    <li><a href="javascript:void(0);">Link</a></li>
-                                </ul>
+                            <li>
+                                <a href="#dropdown-images" aria-expanded="false" data-toggle="collapse">
+                                    <i class="la la-image"></i><span>Imágenes</span>
+                                </a>                                
+                                <ul id="dropdown-images" class="collapse list-unstyled pt-0">
+                                    <li><a class="active" href="javascript:void(0);">Listado</a></li>
+                                    <li><a href="javascript:void(0);">Añadir imagen</a></li>
+                                </ul>                                
                             </li>
-                        </ul>
+                            <li>
+                                <a href="#dropdown-calendar" aria-expanded="false" data-toggle="collapse">
+                                    <i class="la la-calendar"></i><span>Calendario</span>
+                                </a>
+                                <ul id="dropdown-calendar" class="collapse list-unstyled pt-0">
+                                    <li><a class="active" href="javascript:void(0);">Añadir días ocupados</a></li>                                    
+                                </ul>                                
+                            </li>
+                        </ul>                        
                         <ul class="list-unstyled">
-                            <li><a href="db-all.html"><i class="la la-angle-left"></i><span>Back To Elisyam</span></a></li>
+                            <li><a href="db-all.html"><i class="la la-angle-left"></i><span>Volver a la aplicación</span></a></li>
                         </ul>
                         <!-- End Main Navigation -->
                     </nav>

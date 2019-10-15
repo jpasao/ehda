@@ -14,6 +14,7 @@ class Admin extends Controller
 
     public function index()
     {
+        $userName = $_SESSION['name'];
         // Load views
         require_once APP . 'view/admin/includes/header.php';
         require_once APP . 'view/admin/posts/index.php';

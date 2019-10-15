@@ -14,5 +14,6 @@
         <script src="<?php echo URL; ?>assets/js/app/config.js" type="text/javascript"></script>   
         <script src="<?php echo URL; ?>assets/js/app/apiCall.js" type="text/javascript"></script>
         <script src="<?php echo URL; ?>assets/js/app/loginFunctions.js" type="text/javascript"></script>
+        <script src="<?php echo URL; ?>assets/js/app/adminFunctions.js" type="text/javascript"></script>
     </body>
 </html>
