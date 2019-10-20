@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>El Hilo de Ariadna - Gestión de entradas</title>
+        <title>El Hilo de Ariadna - Gestión de contenidos</title>
         <meta name="description" content="El Hilo de Ariadna. Gestión de contenidos">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Google Fonts -->
@@ -11,9 +11,7 @@
         <script>
           WebFont.load({
             google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
+            active: function() { sessionStorage.fonts = true; }
           });
         </script>
         <!-- Favicon -->
@@ -25,7 +23,7 @@
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/base/elisyam-1.5.min.css">
         <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->        
     </head>
     <body id="page-top">
         <!-- Begin Preloader -->
@@ -44,7 +42,7 @@
                     <div class="search-box">
                         <button class="dismiss"><i class="ion-close-round"></i></button>
                         <form id="searchForm" action="#" role="search">
-                            <input type="search" placeholder="Search something ..." class="form-control">
+                            <input type="search" placeholder="Escribe algo..." class="form-control">
                         </form>
                     </div>
                     <!-- End Search Box-->
@@ -52,7 +50,7 @@
                     <div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
                         <!-- Begin Logo -->
                         <div class="navbar-header">
-                            <a href="db-default.html" class="navbar-brand">
+                            <a href="<?php echo URL; ?>admin/index" class="navbar-brand">
                                 <div class="brand-image brand-big">
                                     <img src="<?php echo URL; ?>assets/admin/img/logo-big.png" alt="logo" class="logo-big">
                                 </div>
@@ -95,36 +93,45 @@
                     <nav class="side-navbar box-scroll sidebar-scroll">
                         <!-- Begin Main Navigation -->
                         <span class="heading">Secciones</span>
-                        <ul class="list-unstyled">
-                            <li class="active">
-                                <a href="#dropdown-posts" aria-expanded="false" data-toggle="collapse">
+                        <ul class="list-unstyled" id="sections">
+                            <li>
+                                <a href="#dropdown-posts" aria-expanded="false" data-toggle="collapse" id="sectionPosts">
                                     <i class="la la-align-left"></i><span>Entradas</span>
                                 </a>
                                 <ul id="dropdown-posts" class="collapse list-unstyled pt-0">
-                                    <li><a class="active" href="javascript:void(0);">Listado</a></li>
-                                    <li><a href="javascript:void(0);">Añadir entrada</a></li>
+                                    <li><a href="<?php echo URL; ?>admin/posts" id="subSectionPostList">Listado</a></li>
+                                    <li><a href="<?php echo URL; ?>admin/nuevoPost" id="subSectionPostAdd">Añadir entrada</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#dropdown-images" aria-expanded="false" data-toggle="collapse">
+                                <a href="#dropdown-tags" aria-expanded="false" data-toggle="collapse" id="sectionTags">
+                                    <i class="la la-tag"></i><span>Etiquetas</span>
+                                </a>
+                                <ul id="dropdown-tags" class="collapse list-unstyled pt-0">
+                                    <li><a href="<?php echo URL; ?>admin/etiquetas" id="subSectionTagList">Listado</a></li>
+                                    <li><a href="<?php echo URL; ?>admin/nuevaEtiqueta" id="subSectionTagAdd">Añadir etiqueta</a></li>
+                                </ul>
+                            </li>                            
+                            <li>
+                                <a href="#dropdown-images" aria-expanded="false" data-toggle="collapse" id="sectionImages">
                                     <i class="la la-image"></i><span>Imágenes</span>
                                 </a>                                
                                 <ul id="dropdown-images" class="collapse list-unstyled pt-0">
-                                    <li><a class="active" href="javascript:void(0);">Listado</a></li>
-                                    <li><a href="javascript:void(0);">Añadir imagen</a></li>
+                                    <li><a href="<?php echo URL; ?>admin/imagenes"  id="subSectionImageList">Listado</a></li>
+                                    <li><a href="<?php echo URL; ?>admin/nuevaImagen" id="subSectionImageAdd">Añadir imagen</a></li>
                                 </ul>                                
                             </li>
                             <li>
-                                <a href="#dropdown-calendar" aria-expanded="false" data-toggle="collapse">
+                                <a href="#dropdown-calendar" aria-expanded="false" data-toggle="collapse" id="sectionCalendar">
                                     <i class="la la-calendar"></i><span>Calendario</span>
                                 </a>
                                 <ul id="dropdown-calendar" class="collapse list-unstyled pt-0">
-                                    <li><a class="active" href="javascript:void(0);">Añadir días ocupados</a></li>                                    
+                                    <li><a href="<?php echo URL; ?>admin/diasLibresCalendario"  id="subSectionCalendar">Añadir días ocupados</a></li>                                    
                                 </ul>                                
                             </li>
                         </ul>                        
                         <ul class="list-unstyled">
-                            <li><a href="db-all.html"><i class="la la-angle-left"></i><span>Volver a la aplicación</span></a></li>
+                            <li><a href="<?php echo URL; ?>"><i class="la la-angle-left"></i><span>Volver a la aplicación</span></a></li>
                         </ul>
                         <!-- End Main Navigation -->
                     </nav>

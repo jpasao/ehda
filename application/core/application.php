@@ -13,7 +13,7 @@ class Application
         // Check for controller: no controller given? then load start-page
         if (!$this->url_controller) 
         {
-            require_once APP . 'controller/citas.php';
+            require_once APP . 'controller/calendar.php';
             $page = new Citas();
             $page->index();
 

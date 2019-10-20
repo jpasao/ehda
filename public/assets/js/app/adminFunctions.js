@@ -11,3 +11,15 @@ function logout(){
             location.href = url + 'admin/login';
         });
 }
+
+$(document).ready(function(){
+    var contentId = $('div.content-inner').prop('id');
+    var $subSection = $('#subSection' + contentId);
+
+    // Highlight current subsection
+    $subSection.addClass('active');
+    // Unfold current section
+    var $section = $subSection.parents().eq(2).find('a[data-toggle="collapse"]');
+    $section.removeClass('collapsed').attr('aria-expanded', true); 
+    $section.next().addClass('show');
+});
