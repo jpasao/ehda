@@ -81,7 +81,7 @@
                         </div>
                      
                         <div class="sign-btn text-center">
-                            <button class="btn btn-lg btn-gradient-05" id="submit">
+                            <button class="btn btn-lg btn-gradient-05 btn-square" id="submit">
                                 Acceder
                             </button>
                         </div>                        

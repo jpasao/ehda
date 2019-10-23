@@ -21,7 +21,21 @@
             <div class="col-xl-12 col-12">
                 <div class="widget has-shadow">
                     <div class="widget-body">
-                        <p class="text-primary mt-2 mb-2">Añadir etiqueta</p>
+                        <form class="needs-validation" novalidate action="<?php echo URL; ?>EtiquetasController/save" method="POST">
+                            <div class="form-group row d-flex align-items-center mb-5">
+                                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Nombre</label>
+                                <div class="col-lg-5">
+                                    <input type="text" name="name" class="form-control" placeholder="Nombre de la etiqueta" required>
+                                    <div class="invalid-feedback">
+                                        Es necesario indicar el nombre
+                                    </div>                                    
+                                </div>
+                            </div> 
+                            <div class="text-right">
+                                <button class="btn btn-lg btn-gradient-05 btn-square" type="submit" name="save">Guardar</button>
+                                <button class="btn btn-shadow btn-square" type="reset">Limpiar</button>
+                            </div>                                                   
+                        </form>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ function logout(){
         });
 }
 
+// Manages sections folding and subsection highlight 
 $(document).ready(function(){
     var contentId = $('div.content-inner').prop('id');
     var $subSection = $('#subSection' + contentId);

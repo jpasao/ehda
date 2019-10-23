@@ -5,6 +5,7 @@ class Controller
     public $db = null;
     public $model = null;
     public $modelLogin = null;
+    public $modelTags = null;
     
     public function __construct()
     {
@@ -23,8 +24,10 @@ class Controller
     public function loadModel()
     {
         require_once APP . 'model/model.php';  
-        require_once APP . 'model/modellogin.php';      
+        require_once APP . 'model/modelLogin.php';  
+        require_once APP . 'model/modelTags.php';      
         $this->model = new Model($this->db);  
-        $this->modelLogin = new ModelLogin($this->db);      
+        $this->modelLogin = new ModelLogin($this->db);     
+        $this->modelTags = new ModelTags($this->db);      
     }
 }
