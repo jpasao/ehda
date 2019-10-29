@@ -11,7 +11,10 @@ class Login extends Controller
     public function signin()
     {
         require_once APP . 'core/utils.php';  
-        session_start(); 
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        } 
 
         if (Utils::isAjax())
         {

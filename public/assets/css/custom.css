@@ -1,3 +1,4 @@
+/*Calendario*/
 #appointmentCal {
     width: 90%;
     margin: 0px auto;
@@ -79,4 +80,8 @@
         font-size: 18px;
         margin: 10px 0;
     }
+}
+/*Tablas*/
+.actionColumn {
+    width: 120px;
 }

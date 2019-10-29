@@ -20,7 +20,27 @@
             <div class="col-xl-12 col-12">
                 <div class="widget has-shadow">
                     <div class="widget-body">
-                        <p class="text-primary mt-2 mb-2">Lista de etiquetas</p>
+                        <div class="table-responsive">
+                            <table id="tags" class="display table mb-0 dataTable no-footer">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($tags as $tag) { ?>
+                                        <tr>
+                                            <td><?php if (isset($tag->name)) echo htmlspecialchars($tag->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="td-actions actionColumn">
+                                                <a href="#"><i class="la la-edit edit"></i></a>
+                                                <a href="#"><i class="la la-close delete"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
                     <div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/index"><i class="ti ti-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/etiquetas">Etiquetas</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo URL . PAGE_TAG_LIST; ?>">Etiquetas</a></li>
                             <li class="breadcrumb-item active">Nueva etiqueta</li>
                         </ul>
                     </div>	                            
@@ -21,7 +21,7 @@
             <div class="col-xl-12 col-12">
                 <div class="widget has-shadow">
                     <div class="widget-body">
-                        <form class="needs-validation" novalidate action="<?php echo URL; ?>EtiquetasController/save" method="POST">
+                        <form class="needs-validation" novalidate action="<?php echo URL . API_TAG_ADD; ?>" method="POST">
                             <div class="form-group row d-flex align-items-center mb-5">
                                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Nombre</label>
                                 <div class="col-lg-5">

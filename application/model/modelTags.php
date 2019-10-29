@@ -5,7 +5,7 @@ class ModelTags extends Model
     public function SaveTag($id, $name)
     {
         $params = array(':name' => $name);
-        if ($id = 0) 
+        if ($id == 0) 
         {
             $sql = "INSERT INTO tags (name) VALUES (:name)";
         }
@@ -44,7 +44,7 @@ class ModelTags extends Model
     public function GetTagList()
     {
         $sql = "SELECT name FROM tags ORDER BY name";
-        return $this->ExecuteQuery(null, $sql)->fetchAll();
+        return $this->ExecuteQuery($sql, null)->fetchAll();
     }
 
     public function GetTagsByPost($id)

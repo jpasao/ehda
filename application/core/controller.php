@@ -10,7 +10,11 @@ class Controller
     public function __construct()
     {
         $this->openDBConnection();
-        $this->loadModel();            
+        $this->loadModel();    
+        if(!isset($_SESSION)) 
+        { 
+            session_start(); 
+        }       
     }
 
     private function openDBConnection()

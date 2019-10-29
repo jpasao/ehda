@@ -23,4 +23,20 @@ $(document).ready(function(){
     var $section = $subSection.parents().eq(2).find('a[data-toggle="collapse"]');
     $section.removeClass('collapsed').attr('aria-expanded', true); 
     $section.next().addClass('show');
+
+    loadTables();
 });
+
+// Datatable loading
+function loadTables(){
+    var section = location.href;
+
+    $.extend($.fn.dataTable.defaults, {
+        language: spDatatable,
+        columnDefs: [{ targets: [-1], orderable: false }]
+    });
+
+    if (section.includes('etiquetas')){
+        $('#tags').DataTable();
+    }
+}

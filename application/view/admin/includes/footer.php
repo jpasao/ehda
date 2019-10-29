@@ -7,7 +7,10 @@
         <!-- Begin Page Vendor Js -->
         <script src="<?php echo URL; ?>assets/admin/vendors/js/nicescroll/nicescroll.min.js"></script>
         <script src="<?php echo URL; ?>assets/admin/vendors/js/validation/validation.min.js"></script>
-        <script src="<?php echo URL; ?>assets/admin/vendors/js/app/app.min.js"></script>     
+        <script src="<?php echo URL; ?>assets/admin/vendors/js/app/app.min.js"></script>
+        <script src="<?php echo URL; ?>assets/admin/vendors/js/datatables/datatables.min.js"></script>
+        <script src="<?php echo URL; ?>assets/admin/vendors/js/datatables/dataTables.buttons.min.js"></script>     
+        <script src="<?php echo URL; ?>assets/admin/vendors/js/datatables/datatables.es.js"></script>     
         <!-- End Page Vendor Js -->
         <script type="text/javascript" >
 	    	var url = "<?php echo URL; ?>";
