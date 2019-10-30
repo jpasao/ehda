@@ -29,12 +29,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($tags as $tag) { ?>
+                                    <?php foreach ($tags as $tag) { 
+                                        $idTag = htmlspecialchars($tag->id, ENT_QUOTES, 'UTF-8');
+                                        $tagName = isset($tag->name) ? htmlspecialchars($tag->name, ENT_QUOTES, 'UTF-8') : '';   
+                                    ?>
                                         <tr>
-                                            <td><?php if (isset($tag->name)) echo htmlspecialchars($tag->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><?php echo $tagName; ?></td>
                                             <td class="td-actions actionColumn">
-                                                <a href="#"><i class="la la-edit edit"></i></a>
-                                                <a href="#"><i class="la la-close delete"></i></a>
+                                                <a href="<?php echo URL . PAGE_TAG_SAVE . $idTag; ?>"><i class="la la-edit edit"></i></a>
+                                                <a href="<?php echo URL . API_TAG_DEL . $idTag; ?>"><i class="la la-close delete"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

@@ -2,11 +2,33 @@
 
 class Etiquetas extends Controller
 {
-    public function nueva()
+    public function guardar($id)
+    {    
+        $userName = $_SESSION['name'];    
+        $literal;
+        $tag = null;
+
+        if ($id == 'nueva')
+        {
+            $literal = 'Añadir';            
+        }
+        else
+        {
+            $literal = 'Modificar';
+            $tag = $this->modelTags->GetTag($id);
+        }
+       
+        require_once APP . 'view/admin/includes/header.php';
+        require_once APP . 'view/admin/tags/addTag.php';
+        require_once APP . 'view/admin/includes/footer.php';        
+    }
+
+    public function save()
     {
         if (isset($_POST['save'])){
+            $id = $_POST['id'];
             $name = $_POST['name'];
-            $this->modelTags->SaveTag(0, $name);
+            $this->modelTags->SaveTag($id, $name);
         }
 
         header('location: ' . URL . PAGE_TAG_LIST);
@@ -20,5 +42,11 @@ class Etiquetas extends Controller
         require_once APP . 'view/admin/includes/header.php';
         require_once APP . 'view/admin/tags/tagIndex.php';
         require_once APP . 'view/admin/includes/footer.php'; 
+    }
+
+    public function delete($id)
+    {
+        $this->modelTags->DeleteTag($id);
+        header('location: ' . URL . PAGE_TAG_LIST);
     }
 }

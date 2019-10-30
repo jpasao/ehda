@@ -7,6 +7,23 @@
 CREATE DATABASE IF NOT EXISTS `dbehda` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `dbehda`;
 
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `postimages` (
+  `idpost` int(11) NOT NULL,
+  `idimage` int(11) NOT NULL,
+  PRIMARY KEY (`idpost`,`idimage`),
+  KEY `IX_postimages_images` (`idimage`),
+  KEY `IX_postimages_posts` (`idpost`),
+  CONSTRAINT `FK_postimages_images` FOREIGN KEY (`idimage`) REFERENCES `images` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_postimages_posts` FOREIGN KEY (`idpost`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -19,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `posttags` (
   `idpost` int(11) NOT NULL,
   `idtag` int(11) NOT NULL,
   PRIMARY KEY (`idpost`,`idtag`),
-  KEY `FK_posttags_posts_idx` (`idpost`),
-  KEY `FK_posttags_tags` (`idtag`),
+  KEY `IX_posttags_posts_idx` (`idpost`),
+  KEY `IX_posttags_tags` (`idtag`),
   CONSTRAINT `FK_posttags_posts` FOREIGN KEY (`idpost`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_posttags_tags` FOREIGN KEY (`idtag`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

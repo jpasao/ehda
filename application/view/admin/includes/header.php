@@ -111,7 +111,7 @@
                                 </a>
                                 <ul id="dropdown-tags" class="collapse list-unstyled pt-0">
                                     <li><a href="<?php echo URL . PAGE_TAG_LIST; ?>" id="subSectionTagList">Listado</a></li>
-                                    <li><a href="<?php echo URL . PAGE_TAG_ADD; ?>" id="subSectionTagAdd">Añadir etiqueta</a></li>
+                                    <li><a href="<?php echo URL . PAGE_TAG_SAVE . NEWNODE; ?>" id="subSectionTagAdd">Guardar etiqueta</a></li>
                                 </ul>
                             </li>                            
                             <li>

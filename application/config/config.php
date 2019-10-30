@@ -30,6 +30,8 @@ define('CALENDARID', 'trablete@gmail.com');
 putenv('GOOGLE_APPLICATION_CREDENTIALS=' . KEYLOCATION);
 
 // Admin routes
-define('PAGE_TAG_ADD', 'admin/nuevaEtiqueta');
+define('NEWNODE', 'nueva');
+define('PAGE_TAG_SAVE', 'etiquetas/guardar/');
 define('PAGE_TAG_LIST', 'etiquetas/lista');
-define('API_TAG_ADD', 'etiquetas/nueva');
+define('API_TAG_SAVE', 'etiquetas/save');
+define('API_TAG_DEL', 'etiquetas/delete/');

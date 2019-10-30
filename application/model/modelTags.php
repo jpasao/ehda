@@ -36,14 +36,14 @@ class ModelTags extends Model
 
     public function GetTag($id)
     {
-        $sql = "SELECT name FROM tags WHERE id = :id";
+        $sql = "SELECT id, name FROM tags WHERE id = :id";
         $params = array(':id' => $id);
         return $this->ExecuteQuery($sql, $params)->fetch();
     }
 
     public function GetTagList()
     {
-        $sql = "SELECT name FROM tags ORDER BY name";
+        $sql = "SELECT id, name FROM tags ORDER BY name";
         return $this->ExecuteQuery($sql, null)->fetchAll();
     }
 

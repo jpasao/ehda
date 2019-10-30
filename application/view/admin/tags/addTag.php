@@ -1,10 +1,18 @@
+<?php 
+    $idValue = 0;
+    $nameValue = '';
+    if ($tag != null) {
+        $idValue = htmlspecialchars($tag->id, ENT_QUOTES, 'UTF-8'); 
+        $nameValue = htmlspecialchars($tag->name, ENT_QUOTES, 'UTF-8'); 
+    }
+?>
 <div class="content-inner" id="TagAdd">
     <div class="container-fluid">
         <!-- Begin Page Header-->
         <div class="row">
             <div class="page-header">
                 <div class="d-flex align-items-center">
-                    <h2 class="page-header-title">Añadir etiqueta</h2>
+                    <h2 class="page-header-title"><?php echo $literal; ?> etiqueta</h2>
                     <div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/index"><i class="ti ti-home"></i></a></li>
@@ -21,11 +29,19 @@
             <div class="col-xl-12 col-12">
                 <div class="widget has-shadow">
                     <div class="widget-body">
-                        <form class="needs-validation" novalidate action="<?php echo URL . API_TAG_ADD; ?>" method="POST">
+                        <form class="needs-validation" novalidate action="<?php echo URL . API_TAG_SAVE; ?>" method="POST">
                             <div class="form-group row d-flex align-items-center mb-5">
                                 <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Nombre</label>
                                 <div class="col-lg-5">
-                                    <input type="text" name="name" class="form-control" placeholder="Nombre de la etiqueta" required>
+                                    <input type="hidden" 
+                                           name="id" 
+                                           value="<?php echo $idValue; ?>" />
+                                    <input type="text" 
+                                           name="name" 
+                                           class="form-control" 
+                                           placeholder="Nombre de la etiqueta" 
+                                           required
+                                           value="<?php echo $nameValue; ?>">
                                     <div class="invalid-feedback">
                                         Es necesario indicar el nombre
                                     </div>                                    

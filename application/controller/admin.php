@@ -36,14 +36,6 @@ class Admin extends Controller
         require_once APP . 'view/admin/includes/footer.php';        
     }
 
-    public function nuevaEtiqueta()
-    {    
-        $userName = $_SESSION['name'];    
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/tags/addTag.php';
-        require_once APP . 'view/admin/includes/footer.php';        
-    }
-
     public function imagenes()
     {   
         $userName = $_SESSION['name'];     
