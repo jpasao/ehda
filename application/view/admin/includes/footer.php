@@ -11,6 +11,7 @@
         <script src="<?php echo URL; ?>assets/admin/vendors/js/datatables/datatables.min.js"></script>
         <script src="<?php echo URL; ?>assets/admin/vendors/js/datatables/dataTables.buttons.min.js"></script>     
         <script src="<?php echo URL; ?>assets/admin/vendors/js/datatables/datatables.es.js"></script>     
+        <script src="<?php echo URL; ?>assets/admin/vendors/js/noty/noty.min.js"></script>             
         <!-- End Page Vendor Js -->
         <script type="text/javascript" >
 	    	var url = "<?php echo URL; ?>";

@@ -48,7 +48,7 @@ class Admin extends Controller
     {    
         $userName = $_SESSION['name'];    
         require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/images/addImage.php';
+        require_once APP . 'view/admin/images/saveImage.php';
         require_once APP . 'view/admin/includes/footer.php';        
     }
 

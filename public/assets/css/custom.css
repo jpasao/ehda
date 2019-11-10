@@ -85,3 +85,7 @@
 .actionColumn {
     width: 120px;
 }
+.imgTable {
+    height: 35px;
+    cursor: pointer;
+}

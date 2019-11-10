@@ -119,8 +119,8 @@
                                     <i class="la la-image"></i><span>Imágenes</span>
                                 </a>                                
                                 <ul id="dropdown-images" class="collapse list-unstyled pt-0">
-                                    <li><a href="<?php echo URL; ?>admin/imagenes"  id="subSectionImageList">Listado</a></li>
-                                    <li><a href="<?php echo URL; ?>admin/nuevaImagen" id="subSectionImageAdd">Añadir imagen</a></li>
+                                    <li><a href="<?php echo URL . PAGE_IMAGE_LIST; ?>"  id="subSectionImageList">Listado</a></li>
+                                    <li><a href="<?php echo URL . PAGE_IMAGE_SAVE . NEWNODE; ?>" id="subSectionImageAdd">Guardar imagen</a></li>
                                 </ul>                                
                             </li>
                             <li>

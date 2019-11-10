@@ -19,8 +19,18 @@ class Etiquetas extends Controller
         }
        
         require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/tags/addTag.php';
+        require_once APP . 'view/admin/tags/saveTag.php';
         require_once APP . 'view/admin/includes/footer.php';        
+    }
+
+    public function lista()
+    {
+        $userName = $_SESSION['name'];   
+        $tags = $this->modelTags->GetTagList();
+
+        require_once APP . 'view/admin/includes/header.php';
+        require_once APP . 'view/admin/tags/tagIndex.php';
+        require_once APP . 'view/admin/includes/footer.php'; 
     }
 
     public function save()
@@ -32,16 +42,6 @@ class Etiquetas extends Controller
         }
 
         header('location: ' . URL . PAGE_TAG_LIST);
-    }
-
-    public function lista()
-    {
-        $userName = $_SESSION['name'];   
-        $tags = $this->modelTags->GetTagList();
-
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/tags/tagIndex.php';
-        require_once APP . 'view/admin/includes/footer.php'; 
     }
 
     public function delete($id)

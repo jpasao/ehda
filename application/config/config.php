@@ -12,6 +12,8 @@ define('URL_PROTOCOL', 'http://');
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);	
+define('IMG_DIR', ROOT . URL_PUBLIC_FOLDER . '/img/');
+define('IMG_URL', URL . 'img/');
 
 // Database
 define('DB_TYPE', 'mysql');
@@ -35,3 +37,8 @@ define('PAGE_TAG_SAVE', 'etiquetas/guardar/');
 define('PAGE_TAG_LIST', 'etiquetas/lista');
 define('API_TAG_SAVE', 'etiquetas/save');
 define('API_TAG_DEL', 'etiquetas/delete/');
+
+define('PAGE_IMAGE_SAVE', 'imagenes/guardar/');
+define('PAGE_IMAGE_LIST', 'imagenes/lista');
+define('API_IMAGE_SAVE', 'imagenes/save');
+define('API_IMAGE_DEL', 'imagenes/delete/');
