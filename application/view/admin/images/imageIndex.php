@@ -7,7 +7,7 @@
                     <h2 class="page-header-title">Lista de imágenes</h2>
                     <div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/index"><i class="ti ti-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo URL . PAGE_ADMIN_HOME; ?>"><i class="ti ti-home"></i></a></li>
                             <li class="breadcrumb-item active">Imágenes</li>
                         </ul>
                     </div>	                            
@@ -89,28 +89,6 @@
             </div>
         </div>
     </div>    
-    <!-- End image modal -->
-    <!-- Delete Modal -->
-    <div id="delModal" class="modal modal-top" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Atención</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Se va a borrar la imagen <span id="elementId"></span></p>
-                    <p>¿Está de acuerdo?</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" id="delButton" class="btn btn-gradient-05 btn-square">Aceptar</a>
-                    <button type="button" class="btn btn-shadow btn-square" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Delete Modal -->    
+    <!-- End image modal -->   
 </div>
 <!-- End Content -->

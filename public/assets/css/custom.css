@@ -81,11 +81,15 @@
         margin: 10px 0;
     }
 }
-/*Tablas*/
+/*Tables*/
 .actionColumn {
     width: 120px;
 }
 .imgTable {
     height: 35px;
     cursor: pointer;
+}
+/*Bootstrap select*/
+button.dropdown-toggle {
+    border-radius: 0;
 }

@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 $('#logout').on('click', function(){
     logout();
@@ -23,22 +23,22 @@ $(document).ready(function(){
     var $section = $subSection.parents().eq(2).find('a[data-toggle="collapse"]');
     $section.removeClass('collapsed').attr('aria-expanded', true); 
     $section.next().addClass('show');
-
+    
     loadTables();
     showTableImage();
     deleteElement();
+    newPost();
 });
 
 // Datatable loading
 function loadTables(){
     var section = location.href;
-
-    $.extend($.fn.dataTable.defaults, {
-        language: spDatatable,
-        columnDefs: [{ targets: [-1], orderable: false }]
-    });
-
+    
     if (section.includes('lista')){
+        $.extend($.fn.dataTable.defaults, {
+            language: spDatatable,
+            columnDefs: [{ targets: [-1], orderable: false }]
+        });
         $('#list').DataTable();
     }
     // Notifications on saving images
@@ -77,7 +77,7 @@ function showTableImage(){
 
 // Event to confirm deletion
 function deleteElement(){
-    $('#TagList, #ImageList').on('click', '.deleteElement', function(event){
+    $('#TagList, #ImageList, #PostList').on('click', '.deleteElement', function(event){
 
         var link = $(event.currentTarget);
         var apiRoute = link.data('api');
@@ -87,5 +87,38 @@ function deleteElement(){
         $modal.find('#elementId').text(name);
         $modal.find('#delButton').attr('href', apiRoute + link[0].id);
     });
+}
 
+// Event to load editor and events related to new post
+function newPost(){
+    var section = location.href;
+
+    if (section.includes('entradas')){
+        ClassicEditor
+            .create(document.querySelector('#bodyTag'),{
+                language: 'es',               
+                alignment: {
+                    options: [ 'left', 'right', 'center', 'justify' ]
+                },
+                toolbar: 
+                     ['heading','|','bold','italic','link','bulletedList','numberedList','blockQuote','undo','redo','insertTable']                
+                ,                               
+                table: {
+                    contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
+                }                   
+            })
+            .catch( error => {
+                console.error(error);
+            });     
+            
+        // Load bootstrap combos      
+        $('select').selectpicker();
+
+        // Attach image preview on selecting
+        $('#imageSelect').on('change', function(){
+            var imagePath = this.selectedOptions[0].dataset.image;
+            var $image = $('#imagePreview');
+            $image.prop('src', imagePath);
+        });
+    }
 }

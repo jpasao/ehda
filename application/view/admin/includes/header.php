@@ -7,7 +7,7 @@
         <meta name="description" content="El Hilo de Ariadna. Gestión de contenidos">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Google Fonts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script src="<?php echo URL; ?>assets/admin/vendors/js/base/webfont.js"></script>
         <script>
           WebFont.load({
             google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/base/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/base/elisyam-1.5.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/datatables.min.css">
+        <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>assets/css/custom.css">
         <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -101,8 +102,8 @@
                                     <i class="la la-align-left"></i><span>Entradas</span>
                                 </a>
                                 <ul id="dropdown-posts" class="collapse list-unstyled pt-0">
-                                    <li><a href="<?php echo URL; ?>admin/posts" id="subSectionPostList">Listado</a></li>
-                                    <li><a href="<?php echo URL; ?>admin/nuevoPost" id="subSectionPostAdd">Añadir entrada</a></li>
+                                    <li><a href="<?php echo URL . PAGE_POST_LIST; ?>" id="subSectionPostList">Listado</a></li>
+                                    <li><a href="<?php echo URL . PAGE_POST_SAVE . NEWNODE; ?>" id="subSectionPostAdd">Añadir entrada</a></li>
                                 </ul>
                             </li>
                             <li>

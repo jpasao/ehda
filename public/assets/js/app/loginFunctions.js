@@ -42,7 +42,7 @@ function login(){
             }
             else {
                 // Redirect to admin page
-                location.href = url + 'admin/index';
+                location.href = url + 'admin/inicio';
             }
         });
 }

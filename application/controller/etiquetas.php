@@ -30,6 +30,7 @@ class Etiquetas extends Controller
 
         require_once APP . 'view/admin/includes/header.php';
         require_once APP . 'view/admin/tags/tagIndex.php';
+        require_once APP . 'view/admin/includes/deleteModal.php';
         require_once APP . 'view/admin/includes/footer.php'; 
     }
 

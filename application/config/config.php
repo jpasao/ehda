@@ -33,6 +33,8 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS=' . KEYLOCATION);
 
 // Admin routes
 define('NEWNODE', 'nueva');
+define('PAGE_ADMIN_HOME', 'admin/inicio');
+
 define('PAGE_TAG_SAVE', 'etiquetas/guardar/');
 define('PAGE_TAG_LIST', 'etiquetas/lista');
 define('API_TAG_SAVE', 'etiquetas/save');
@@ -42,3 +44,8 @@ define('PAGE_IMAGE_SAVE', 'imagenes/guardar/');
 define('PAGE_IMAGE_LIST', 'imagenes/lista');
 define('API_IMAGE_SAVE', 'imagenes/save');
 define('API_IMAGE_DEL', 'imagenes/delete/');
+
+define('PAGE_POST_SAVE', 'entradas/guardar/');
+define('PAGE_POST_LIST', 'entradas/lista');
+define('API_POST_SAVE', 'entradas/save');
+define('API_POST_DEL', 'entradas/delete/');

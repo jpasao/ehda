@@ -17,16 +17,15 @@ class ModelTags extends Model
         return $this->ExecuteQuery($sql, $params);
     }
 
-    public function SavePostTags($postid, $tagids)
+    public function SavePostTags($postid, $tagArray)
     {
         // First, delete all tags of this post
-        $sql = "DELETE FROM posttags WHERE id = :postid";
+        $sql = "DELETE FROM posttags WHERE idpost = :postid";
         $params = array(':postid' => $postid);
         $this->ExecuteQuery($sql, $params);
 
-        // Iterate through all tags to save them
-        $tagArray = explode(';', $tagids);
-        $sql = "INSERT INTO posttags (idpost, idtag) VALUES (:idpost, :idtag)";
+        // Iterate through all tags to save them       
+        $sql = "INSERT INTO posttags (idpost, idtag) VALUES (:postid, :idtag)";
         foreach($tagArray as $idtag)
         {
             $params[':idtag'] = $idtag;
@@ -48,10 +47,10 @@ class ModelTags extends Model
     }
 
     public function GetTagsByPost($id)
-    {
-        $sql = "SELECT name FROM tags  WHERE id = :id ORDER BY name";
-        $params = array(':id' => $id);
-        return $this->ExecuteQuery($params, $sql)->fetch();
+    {        
+        $sql = "SELECT idpost, idtag, name FROM tagsbypost WHERE idpost = :idPost ORDER BY name";
+        $params = array(':idPost' => $id);
+        return $this->ExecuteQuery($sql, $params)->fetchAll();
     }
 
     public function DeleteTag($id)

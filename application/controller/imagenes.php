@@ -32,6 +32,7 @@ class Imagenes extends Controller
 
         require_once APP . 'view/admin/includes/header.php';
         require_once APP . 'view/admin/images/imageIndex.php';
+        require_once APP . 'view/admin/includes/deleteModal.php';
         require_once APP . 'view/admin/includes/footer.php'; 
     }
 

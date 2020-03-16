@@ -15,9 +15,9 @@
                     <h2 class="page-header-title"><?php echo $literal; ?> etiqueta</h2>
                     <div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/index"><i class="ti ti-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo URL . PAGE_ADMIN_HOME; ?>"><i class="ti ti-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="<?php echo URL . PAGE_TAG_LIST; ?>">Etiquetas</a></li>
-                            <li class="breadcrumb-item active">Nueva etiqueta</li>
+                            <li class="breadcrumb-item active"><?php echo $literal; ?> etiqueta</li>
                         </ul>
                     </div>	                            
                 </div>
@@ -31,8 +31,8 @@
                     <div class="widget-body">
                         <form class="needs-validation" novalidate action="<?php echo URL . API_TAG_SAVE; ?>" method="POST">
                             <div class="form-group row d-flex align-items-center mb-5">
-                                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Nombre</label>
-                                <div class="col-lg-5">
+                                <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Nombre</label>
+                                <div class="col-lg-7">
                                     <input type="hidden" 
                                            name="id" 
                                            value="<?php echo $idValue; ?>" />
@@ -49,7 +49,6 @@
                             </div> 
                             <div class="text-right">
                                 <button class="btn btn-lg btn-gradient-05 btn-square" type="submit" name="save">Guardar</button>
-                                <button class="btn btn-shadow btn-square" type="reset">Limpiar</button>
                             </div>                                                   
                         </form>
                     </div>

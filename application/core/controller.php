@@ -7,6 +7,7 @@ class Controller
     public $modelLogin = null;
     public $modelTags = null;
     public $modelImages = null;
+    public $modelPosts  = null;
     
     public function __construct()
     {
@@ -31,11 +32,13 @@ class Controller
         require_once APP . 'model/model.php';  
         require_once APP . 'model/modelLogin.php';  
         require_once APP . 'model/modelTags.php';      
-        require_once APP . 'model/modelImages.php';      
+        require_once APP . 'model/modelImages.php'; 
+        require_once APP . 'model/modelPosts.php';      
         
         $this->model = new Model($this->db);  
         $this->modelLogin = new ModelLogin($this->db);     
         $this->modelTags = new ModelTags($this->db);      
         $this->modelImages = new ModelImages($this->db);    
+        $this->modelPosts = new ModelPosts($this->db);
     }
 }

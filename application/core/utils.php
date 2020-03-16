@@ -15,7 +15,7 @@ class Utils
     // Returns current datetime in yyyymmdd format
     public static function BuildCurrentDate()
     {
-        return date('YYYYmmdd');
+        return date('Ymd');
     } 
     
     // Check events between dates and returns true if there exist events       

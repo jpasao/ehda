@@ -12,43 +12,11 @@ class Admin extends Controller
         }
     }
 
-    public function index()
+    public function inicio()
     {        
         $userName = $_SESSION['name'];
         require_once APP . 'view/admin/includes/header.php';
         require_once APP . 'view/admin/adminIndex.php';
-        require_once APP . 'view/admin/includes/footer.php';        
-    }
-
-    public function posts()
-    {   
-        $userName = $_SESSION['name'];     
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/posts/postIndex.php';
-        require_once APP . 'view/admin/includes/footer.php';        
-    }
-
-    public function nuevoPost()
-    {    
-        $userName = $_SESSION['name'];    
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/posts/addPost.php';
-        require_once APP . 'view/admin/includes/footer.php';        
-    }
-
-    public function imagenes()
-    {   
-        $userName = $_SESSION['name'];     
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/images/imageIndex.php';
-        require_once APP . 'view/admin/includes/footer.php';        
-    }
-
-    public function nuevaImagen()
-    {    
-        $userName = $_SESSION['name'];    
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/images/saveImage.php';
         require_once APP . 'view/admin/includes/footer.php';        
     }
 

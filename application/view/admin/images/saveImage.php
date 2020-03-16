@@ -18,7 +18,7 @@
                     <div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/index"><i class="ti ti-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/imagenes">Imágenes</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo URL . PAGE_IMAGE_LIST; ?>">Imágenes</a></li>
                             <li class="breadcrumb-item active"><?php echo $literal; ?> imagen</li>
                         </ul>
                     </div>	                            
@@ -33,8 +33,8 @@
                     <div class="widget-body">
                         <form class="needs-validation" novalidate action="<?php echo URL . API_IMAGE_SAVE; ?>" method="POST" enctype="multipart/form-data">
                             <div class="form-group row d-flex align-items-center mb-5">
-                                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Nombre</label>
-                                <div class="col-lg-5">
+                                <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Nombre</label>
+                                <div class="col-lg-7">
                                     <input type="hidden" name="id" value="<?php echo $idValue; ?>" />                        
                                     <input type="text" 
                                             name="name" 
@@ -48,8 +48,18 @@
                                 </div>
                             </div>
                             <div class="form-group row d-flex align-items-center mb-5">
-                                <label class="col-lg-4 form-control-label d-flex justify-content-lg-end">Imagen</label>
-                                <div class="col-lg-5">
+                                <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Nombre del archivo</label>
+                                <div class="col-lg-7">
+                                <input type="text" 
+                                            name="filenamevalue" 
+                                            class="form-control"                                              
+                                            disabled
+                                            value="<?php echo IMG_URL . htmlspecialchars($filenameValue, ENT_QUOTES, 'UTF-8'); ?>">                                        
+                                </div>                              
+                            </div>                             
+                            <div class="form-group row d-flex align-items-center mb-5">
+                                <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Imagen</label>
+                                <div class="col-lg-7">
                                     <input type="file"                                             
                                             name="filename" 
                                             class="form-control"    
@@ -58,7 +68,6 @@
                             </div>  
                             <div class="text-right">
                                 <button class="btn btn-lg btn-gradient-05 btn-square" type="submit" name="save">Guardar</button>
-                                <button class="btn btn-shadow btn-square" type="reset">Limpiar</button>
                             </div>                                                       
                         </form>
                     </div>
