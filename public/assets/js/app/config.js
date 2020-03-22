@@ -7,6 +7,6 @@ var apiUrl = calSource + '/events?key=' + calApiKey;
 var globalOffset = 2;
 
 // Endpoints
-var addEventEndPoint = url + 'home/add';
+var addEventEndPoint = url + 'citas/add';
 var loginEndPoint = url + 'login/signin';
 var logoutEndPoint = url + 'login/signout';

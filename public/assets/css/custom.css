@@ -15,7 +15,7 @@
     border-width: 5px 5px 5px 0;
     border-right-color: #444;
 }
-.nextHour {
+.forbiddenHours {
     background-image: linear-gradient(45deg, #fff 41.67%, #e3e3e3 41.67%, #e3e3e3 50%, #fff 50%, #fff 91.67%, #e3e3e3 91.67%, #e3e3e3 100%);
     background-size: 8.49px 8.49px;
     border-color: #fff;

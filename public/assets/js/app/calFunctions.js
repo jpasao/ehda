@@ -24,19 +24,27 @@ function buildHourBlocks(eventObj, isNext){
     var nextHourEventArray = [];
     // Convert object to array
     var eventArray = Object.entries(eventObj).map(arr => arr[1]);
-    var startOffset = isNext ? -2 : -4;
-    var endOffset = isNext ? 1 : -1;
-
+    
     if (eventArray.length > 0){
-        var startEventDate, endEventDate, event;
+        var startEventDate, endEventDate, duration, startOffset, endOffset;
         
-        nextHourEventArray = eventArray.map(event => {         
-            startEventDate = new Date((event.range.end).addHours(startOffset)); 
-            endEventDate = new Date((startEventDate).addHours(endOffset));            
+        nextHourEventArray = eventArray.map(event => {   
+            // Initial forbidden hours dates
+            startOffset = -globalOffset - 1;
+            endOffset = -globalOffset;   
+            // Forbidden hour after an event            
+            if (isNext){
+                duration = (event.range.end - event.range.start) / (1000 * 60 * 60);
+                startOffset = endOffset + duration;
+                endOffset = startOffset + 1;
+            }
+            // Set event dates to google calendar object  
+            startEventDate = new Date((event.range.start).addHours(startOffset)); 
+            endEventDate = new Date(endOffset);                        
             return {
                 start: startEventDate,
                 end: endEventDate,
-                className: 'nextHour',
+                className: 'forbiddenHours',
                 allDay: false
             };
         });
