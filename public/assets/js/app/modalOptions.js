@@ -13,6 +13,7 @@ var $contactInfoGroup = $('#contactInfoGroup');
 var $date;
 var $hour = $('#hour');
 var $hourGroup = $('#hourGroup');
+var $duration = $('#duration');
 var $citeForm = $('#citeForm');
 var $modalTitle = $('#modalTitle');
 
@@ -108,14 +109,18 @@ function validateHour(){
     // Get ony gCalSource events, not hourBlocks
     var gCalEvents = calendar.getEvents().filter(event => event.id.length > 0);
     var attemptDate = moment($date + ' ' + $hour.val(), 'DD/MM/YYYY hh:mm').toDate();
+    var attemptDateEnd = attemptDate.addHours($duration.val());
     var hourBefore, hourAfter;
+    var isNearBegining, isNearEnd;
     
     // Search for coincidence
     var sameTime = gCalEvents.find(event => {  
         hourBefore = event.start.addHours(-1);
         hourAfter = event.end.addHours(1);
 
-        return (attemptDate >= hourBefore && attemptDate < hourAfter);
+        isNearBegining = isWithinLimits(hourBefore, hourAfter, attemptDate);
+        isNearEnd = isWithinLimits(hourBefore, hourAfter, attemptDateEnd);
+        return isNearBegining || isNearEnd;
     });
 
     if (sameTime != undefined){   
@@ -138,11 +143,17 @@ function validateHour(){
     } 
 }
 
+// Check if an attempt hour is under certain period of time
+function isWithinLimits(lowEnd, highEnd, attempt){
+    return (attempt > lowEnd && attempt < highEnd);
+}
+
 function sendForm(){
     var params = {
         name: $name.val(),
         date: $date,
         hour: $hour.val(),
+        duration: $duration.val(),
         contactInfo: $contactInfo.val()
     };
    
@@ -152,7 +163,7 @@ function sendForm(){
               
             // Show message and reload calendar            
             $.toast(getMessage(result));                     
-            calendar.refetchEvents();    
+            calendar.refetchEvents(); 
             $submit.button('reset');         
         });
 }

@@ -24,6 +24,7 @@ class Citas extends Controller
             $name = $_POST['name'];
             $date = $_POST['date'];
             $hour = $_POST['hour'];
+            $duration = $_POST['duration'];
             $contactInfo = $_POST['contactInfo'];
             $response = [];
 
@@ -36,8 +37,9 @@ class Citas extends Controller
                 $start = new Google_Service_Calendar_EventDateTime();
         
                 $startDateObj = Utils::BuildDate($date, $hour);
-                $hourLater = date('H:i', strtotime($hour) + 60*60);
-                $endDateObj = Utils::BuildDate($date, $hourLater);
+                $eventEnd = strtotime($hour) + ($duration * 60 * 60);
+                $endHour = date('H:i', $eventEnd);
+                $endDateObj = Utils::BuildDate($date, $endHour);
 
                 $dateStart = $startDateObj->format('Y-m-d');
                 
@@ -45,9 +47,9 @@ class Citas extends Controller
                 $end = new Google_Service_Calendar_EventDateTime();
       
                 // Check events at same time or one hour later
-                $nextHourLater = date('H:i', strtotime($hour) + 2*60*60);
+                $nextHourLater = date('H:i', strtotime($hour) + 2 *($duration * 60 * 60));
                 $nextHourLaterObj = Utils::BuildDate($date, $nextHourLater);
-                $prevHour = date('H:i', strtotime($hour) - 60*60);
+                $prevHour = date('H:i', strtotime($hour) - 60 * 60);
                 $prevHourObj = Utils::BuildDate($date, $prevHour);
                 $freeMoment = Utils::CheckEventExists($auth, $prevHourObj, $nextHourLaterObj);
                 
