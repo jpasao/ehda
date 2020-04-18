@@ -1,14 +1,25 @@
 'use strict';
 
-// Format date object to dd/mm/yyyy format
+// Format date object to DD/MM/YYYY format
 function parseDate(date){
     return moment(date).format('DD/MM/YYYY');    
+}
+
+// Format date object to HH:mm format
+function parseTime(date){
+    return moment(date).format('HH:mm');    
 }
 
 // Add hours to date object
 Date.prototype.addHours = function(hours){
     var added = this;    
     return moment(added).add(hours, 'h').toDate();
+}
+
+// Add days to date object
+Date.prototype.addDays = function(days){
+    var added = this;    
+    return moment(added).add(days, 'd').toDate();
 }
 
 // Format date object to yyyy-MM-ddThh:mm:ss:000Z

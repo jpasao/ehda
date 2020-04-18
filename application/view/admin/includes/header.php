@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/base/elisyam-1.5.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/datatables.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="<?php echo URL; ?>assets/admin/vendors/css/daterangepicker.css">
         <link rel="stylesheet" href="<?php echo URL; ?>assets/css/custom.css">
         <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -129,12 +130,12 @@
                                     <i class="la la-calendar"></i><span>Calendario</span>
                                 </a>
                                 <ul id="dropdown-calendar" class="collapse list-unstyled pt-0">
-                                    <li><a href="<?php echo URL; ?>admin/diasLibresCalendario"  id="subSectionCalendar">Añadir días ocupados</a></li>                                    
+                                    <li><a href="<?php echo URL . PAGE_SPAREDATE_SAVE; ?>" id="subSectionCalendar">Añadir días ocupados</a></li>                                    
                                 </ul>                                
                             </li>
                         </ul>                        
                         <ul class="list-unstyled">
-                            <li><a href="<?php echo URL; ?>"><i class="la la-angle-left"></i><span>Volver a la aplicación</span></a></li>
+                            <li><a href="<?php echo URL . PAGE_APPOINTMENT; ?>" target="_blank"><i class="la la-angle-left"></i><span>Volver a la aplicación</span><i class="la la-external-link super"></i></a></li>
                         </ul>
                         <!-- End Main Navigation -->
                     </nav>

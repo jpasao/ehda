@@ -7,8 +7,10 @@ class Citas extends Controller
         // Load Google authentication
         require_once APP . 'core/authentication.php';
         require_once APP . 'core/utils.php';
+        // If not logged, exit
+        Utils::checkSession();        
     }
-    
+
     public function index()
     {
         // Load views
@@ -26,51 +28,32 @@ class Citas extends Controller
             $hour = $_POST['hour'];
             $duration = $_POST['duration'];
             $contactInfo = $_POST['contactInfo'];
+            $eventTitle = 'Sesión';
             $response = [];
 
             try 
             {
                 // Authenticate service account
                 $auth = new Authentication();
-    
-                // Format dates
-                $start = new Google_Service_Calendar_EventDateTime();
-        
-                $startDateObj = Utils::BuildDate($date, $hour);
-                $eventEnd = strtotime($hour) + ($duration * 60 * 60);
-                $endHour = date('H:i', $eventEnd);
-                $endDateObj = Utils::BuildDate($date, $endHour);
 
-                $dateStart = $startDateObj->format('Y-m-d');
-                
-                $dateEnd = $endDateObj->format('H:i:s');
-                $end = new Google_Service_Calendar_EventDateTime();
-      
-                // Check events at same time or one hour later
-                $nextHourLater = date('H:i', strtotime($hour) + 2 *($duration * 60 * 60));
-                $nextHourLaterObj = Utils::BuildDate($date, $nextHourLater);
-                $prevHour = date('H:i', strtotime($hour) - 60 * 60);
-                $prevHourObj = Utils::BuildDate($date, $prevHour);
-                $freeMoment = Utils::CheckEventExists($auth, $prevHourObj, $nextHourLaterObj);
+                // Begin date        
+                $dateStart = Utils::buildStartDate($date, $hour);
+
+                // End date
+                $dateEnd = Utils::buildEndDate($date, $hour, $duration);  
+
+                // Previous hour
+                $prevHourObj = Utils::buildPrevHour($date, $hour); 
+
+                // Next hour
+                $nextHourObj = Utils::buildNextHour($date, $hour, $duration);                
+    
+                $freeMoment = Utils::CheckEventExists($prevHourObj, $nextHourObj, $auth);
                 
                 if ($freeMoment) 
                 {
                     // Create new event
-                    $auth->event = new Google_Service_Calendar_Event(array(
-                        'summary' => 'Sesión',
-                        'description' => $contactInfo,
-                        'start' => array(
-                            'dateTime' => $dateStart . 'T' . $hour . ':00',
-                            'timeZone' => 'Europe/Madrid'
-                        ),
-                        'end' => array(
-                            'dateTime' => $dateStart . 'T' . $dateEnd,
-                            'timeZone' => 'Europe/Madrid'
-                        )
-                    ));
-    
-                    // Add new event to calendar
-                    $auth->event = $auth->service->events->insert(CALENDARID, $auth->event);  
+                    Utils::buildEvent($auth, $eventTitle, $contactInfo, $dateStart, $hour, $dateEnd, '9');
                     $response['status'] = 1;      
                     $response['statusMsg'] = 'La cita se ha guardado correctamente';
                 }

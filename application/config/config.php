@@ -49,3 +49,9 @@ define('PAGE_POST_SAVE', 'entradas/guardar/');
 define('PAGE_POST_LIST', 'entradas/lista');
 define('API_POST_SAVE', 'entradas/save');
 define('API_POST_DEL', 'entradas/delete/');
+
+define('PAGE_SPAREDATE_SAVE', 'diaslibres/guardar');
+define('API_SPAREDATE_SAVE', 'diaslibres/save');
+
+// Public routes
+define('PAGE_APPOINTMENT', 'citas');

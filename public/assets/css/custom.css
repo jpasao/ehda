@@ -24,6 +24,10 @@
 .fa-spin{
     animation-duration: 0.7s;
 }
+.super{
+    font-size: small !important;
+    vertical-align: super !important;
+}
 @media(min-width: 600px){
     #appointmentCal {
         height: 500px; 

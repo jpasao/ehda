@@ -28,6 +28,8 @@ $(document).ready(function(){
     showTableImage();
     deleteElement();
     newPost();
+    loadDateRangePicker();
+    setSpareDates();
 });
 
 // Datatable loading
@@ -60,6 +62,48 @@ function loadTables(){
             text: notifyText
         }).show();        
     }
+}
+
+// Date range picker loader
+function loadDateRangePicker(){
+    $('#datetime').daterangepicker({
+        "timePicker": true,
+        "timePicker24Hour": true,
+        "timePickerIncrement": 30,   
+        "autoApply": true,   
+        "linkedCalendars": false,  
+        "locale": setLocaleDateRange(),        
+        "startDate": new Date(),
+        "endDate": new Date().addDays(7),
+        "opens": "center",
+        "buttonClasses": "btn btn-lg btn-square",
+        "applyButtonClasses": "btn-gradient-05",
+        "cancelClass": "btn-shadow"
+    });       
+}
+
+// Event to pass dates to disabled fields
+function setSpareDates(){ 
+    $('#datetime').on('hide.daterangepicker', function(ev, picker){
+        // Get times from daterangepicker object
+        var fromDate = parseDate(picker.startDate);
+        var fromTime = parseTime(picker.startDate);
+        var toDate = parseDate(picker.endDate);
+        var toTime = parseTime(picker.endDate);
+        // Set times on disabled fields
+        $('#fromDate').val(fromDate);
+        $('#fromTime').val(fromTime);
+        $('#toDate').val(toDate);
+        $('#toTime').val(toTime);
+    });
+    $('#datetime').on('cancel.daterangepicker', function(ev, picker){
+        // Reset disabled fields
+        $('#fromDate').val('');
+        $('#fromTime').val('');
+        $('#toDate').val('');
+        $('#toTime').val('');
+        $(this).val('');
+    });    
 }
 
 // Event binding to show table images in modal

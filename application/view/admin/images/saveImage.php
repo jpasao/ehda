@@ -2,10 +2,11 @@
     $idValue = 0;
     $nameValue = '';
     $filenameValue = '';
+    
     if ($image != null) {
         $idValue = htmlspecialchars($image->id, ENT_QUOTES, 'UTF-8'); 
         $nameValue = htmlspecialchars($image->name, ENT_QUOTES, 'UTF-8'); 
-        $filenameValue = htmlspecialchars($image->filename, ENT_QUOTES, 'UTF-8'); 
+        $filenameValue = IMG_URL . htmlspecialchars($image->filename, ENT_QUOTES, 'UTF-8'); 
     }
 ?>
 <div class="content-inner" id="ImageAdd">
@@ -54,7 +55,7 @@
                                             name="filenamevalue" 
                                             class="form-control"                                              
                                             disabled
-                                            value="<?php echo IMG_URL . htmlspecialchars($filenameValue, ENT_QUOTES, 'UTF-8'); ?>">                                        
+                                            value="<?php echo $filenameValue; ?>">                                        
                                 </div>                              
                             </div>                             
                             <div class="form-group row d-flex align-items-center mb-5">

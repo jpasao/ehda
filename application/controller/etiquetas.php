@@ -2,6 +2,14 @@
 
 class Etiquetas extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        require_once APP . 'core/utils.php';      
+        // If not logged, exit
+        Utils::checkSession();
+    }
+
     public function guardar($id)
     {    
         $userName = $_SESSION['name'];    
