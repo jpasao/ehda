@@ -10,10 +10,18 @@ class Admin extends Controller
     }
 
     public function inicio()
-    {        
-        $userName = $_SESSION['name'];
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/adminIndex.php';
-        require_once APP . 'view/admin/includes/footer.php';        
+    {  
+        try 
+        {            
+            $userName = $_SESSION['name'];
+            require_once APP . 'view/admin/includes/header.php';
+            require_once APP . 'view/admin/includes/sideMenu.php';
+            require_once APP . 'view/admin/adminIndex.php';
+            require_once APP . 'view/admin/includes/footer.php';        
+        } 
+        catch (Exception $e) 
+        {
+			Utils::redirectToAdminErrorPage('carga de la página inicial de zona privada', $e);              
+        }              
     }
 }

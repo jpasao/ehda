@@ -4,7 +4,7 @@ class Application
 {
     private $url_controller = null;
     private $url_action = null;
-    private $url_params = array();
+    private $url_params = array();    
 
     public function __construct()
     {
@@ -24,48 +24,72 @@ class Application
 
             if (method_exists($this->url_controller, $this->url_action)) 
             {
-                if (!empty($this->url_params))                
+                if (!empty($this->url_params))    
+                {
                     call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
-                 else                    
+                }            
+                else 
+                {
                     $this->url_controller->{$this->url_action}();
+                }                    
             }
             else 
             {
-                if (strlen($this->url_action) == 0)                     
+                if (strlen($this->url_action) == 0)               
+                {
                     $this->url_controller->index();                
-                else                
-                    header('location: ' . URL . 'apperror');                
+                }      
+                else
+                {
+                    header('location: ' . $this->getErrorPage());                
+                }                
             }
         } 
         else 
-            header('location: ' . URL . 'apperror');            
+        {
+            header('location: ' . $this->getErrorPage());            
+        }
     }
 
     private function splitUrl()
     {
-        if (isset($_GET['url'])){
+        $url = $_GET['url'];
+        if (isset($url)){
             // split URL            
-            $url = trim($_GET['url'], '/');
+            $urlArray = trim($url, '/');
             
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url);
+            $urlArray = filter_var($urlArray, FILTER_SANITIZE_URL);
+            $urlArray = explode('/', $urlArray);
 
             // Put URL parts into according properties
-            $this->url_controller = isset($url[0]) ? $url[0] : null;
-            $this->url_action = isset($url[1]) ? $url[1] : null;
+            $this->url_controller = isset($urlArray[0]) ? $urlArray[0] : null;
+            $this->url_action = isset($urlArray[1]) ? $urlArray[1] : null;
 
             // Remove controller and action from the split URL
-            unset($url[0], $url[1]);
+            unset($urlArray[0], $urlArray[1]);
 
             // Rebase array keys and store the URL params
-            $this->url_params = array_values($url);
-
-            // for debugging. uncomment this if you have problems with the URL
-            // echo 'Controller: ' . $this->url_controller . '<br>';
-            // echo 'Action: ' . $this->url_action . '<br>';
-            // echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
+            $this->url_params = array_values($urlArray);
         }
-    }        
+    }  
+    
+    private function getErrorPage()
+    {
+        $errorPage = URL . PAGE_ERROR;
+        $url = $_GET['url'];
+        $adminArray = array(ADMIN, POST, TAG, IMAGE, SPAREDATE);
+        foreach ($adminArray as $adminRoute)
+        {
+            if (strpos($url, $adminRoute) !== false)
+            {
+                $errorPage = URL . PAGE_ADMIN_ERROR;
+                $_SESSION['adminerror'] = 'Se estaba visitando ' . $url;
+                break;
+            }
+        }
+
+        return $errorPage;
+    }
 }
 
 

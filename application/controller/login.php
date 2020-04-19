@@ -62,9 +62,16 @@ class Login extends Controller
 
     public function signout()
     {
-        session_start();
-        unset($_SESSION['logged']);
-        unset($_SESSION['name']);
-        header('location: ' . URL . 'login');
+        try 
+        {            
+            session_start();
+            unset($_SESSION['logged']);
+            unset($_SESSION['name']);
+            header('location: ' . URL . 'login');
+        } 
+        catch (Exception $e) 
+        {
+			Utils::redirectToAdminErrorPage('cerrar sesión', $e);
+        }
     }
 }

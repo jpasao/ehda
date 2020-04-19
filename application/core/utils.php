@@ -121,4 +121,11 @@ class Utils
             exit();
         }        
     } 
+
+    // Redirect to admin error page
+    public function redirectToAdminErrorPage($errorMessage, $exception)
+    {
+        $_SESSION['adminerror'] = 'Excepción en ' . $errorMessage . ': ' . $exception->getMessage();  
+        header('location: ' . URL . PAGE_ADMIN_ERROR); 
+    } 
 }

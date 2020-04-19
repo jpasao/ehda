@@ -13,10 +13,18 @@ class Diaslibres extends Controller
 
     public function guardar()
     {    
-        $userName = $_SESSION['name']; 
-        require_once APP . 'view/admin/includes/header.php';
-        require_once APP . 'view/admin/calendar/addBusyDays.php';
-        require_once APP . 'view/admin/includes/footer.php';        
+        try 
+        {            
+            $userName = $_SESSION['name']; 
+            require_once APP . 'view/admin/includes/header.php';
+            require_once APP . 'view/admin/includes/sideMenu.php';
+            require_once APP . 'view/admin/calendar/addBusyDays.php';
+            require_once APP . 'view/admin/includes/footer.php';        
+        } 
+        catch (Exception $e) 
+        {
+			Utils::redirectToAdminErrorPage('carga del guardado de días libres', $e);             
+        }
     }
 
     public function save()
@@ -42,7 +50,7 @@ class Diaslibres extends Controller
             {
                 // Authenticate service account
                 $auth = new Authentication();
-
+                
                 $dateFrom = $fromDate;
                 $timeFrom = $fromTime;
                 $timeStampIncreased = Utils::IncreaseDate($dateFrom, $timeFrom, -2);
@@ -78,27 +86,44 @@ class Diaslibres extends Controller
                     $isEndDate = $this->isEndDateReached($timeStampIncreased, $endDate);
     
                 } while ($isEndDate == false);
-            }
+            }             
             catch(Exception $e) 
-            {      
-                header('location: ' . URL . 'apperror');  
+            {  
+                Utils::redirectToAdminErrorPage('guardado de días libres', $e);
             }           
         }
+        else 
+        {
+            header('location: ' . URL . PAGE_SPAREDATE_SAVE);
+        }
 
-        header('location: ' . URL . PAGE_SPAREDATE_SAVE);
     }
 
     private function isEndDateReached($attemptDate, $endDate)
     {
-        // Check if event about to save is within time limits
-        return $attemptDate >= $endDate;
+        try 
+        {            
+            // Check if event about to save is within time limits
+            return $attemptDate >= $endDate;
+        } 
+        catch (Exception $e) 
+        {
+			Utils::redirectToAdminErrorPage('comprobación de final de días libres', $e);
+        }
     }
 
     private function checkWorkingTime($attemptDate)
     {
-        // Check if event about to create is within working hours (10 to 19) or weekend
-        $hour = date('G', $attemptDate->format('U'));
-        $dayOfWeek = date('N', $attemptDate->format('U'));
-        return ($hour > 8 && $hour < 20) && $dayOfWeek < 6;
+        try 
+        {            
+            // Check if event about to create is within working hours (10 to 19) or weekend
+            $hour = date('G', $attemptDate->format('U'));
+            $dayOfWeek = date('N', $attemptDate->format('U'));
+            return ($hour > 8 && $hour < 20) && $dayOfWeek < 6;
+        } 
+        catch (Exception $e) 
+        {
+			Utils::redirectToAdminErrorPage('comprobación de horas laborables en días libres', $e);
+        }
     }
 }

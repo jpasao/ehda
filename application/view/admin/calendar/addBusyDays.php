@@ -7,7 +7,7 @@
                     <h2 class="page-header-title">Añadir días ocupados</h2>
                     <div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo URL; ?>admin/index"><i class="ti ti-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo URL . PAGE_ADMIN_HOME; ?>"><i class="ti ti-home"></i></a></li>
                             <li class="breadcrumb-item active">Días ocupados</li>
                         </ul>
                     </div>	                            
