@@ -33,32 +33,45 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS=' . KEYLOCATION);
 
 // Admin routes
 define('NEWNODE', 'nueva');
-define('ADMIN', 'admin/');
-define('PAGE_ADMIN_HOME', ADMIN . 'inicio');
+define('ADMIN_FOLDER', 'admin/');
+define('ADMIN', 'admin');
+define('LOGIN', 'login');
+define('PAGE_ADMIN_LOGIN', ADMIN_FOLDER . LOGIN . '/');
+define('PAGE_ADMIN_HOME', ADMIN_FOLDER . 'inicio');
 define('PAGE_ADMIN_ERROR', 'appadminerror');
 
-define('TAG', 'etiquetas/');
-define('PAGE_TAG_SAVE', TAG . 'guardar/');
-define('PAGE_TAG_LIST', TAG . 'lista');
-define('API_TAG_SAVE', TAG . 'save');
-define('API_TAG_DEL', TAG . 'delete/');
+$pageSaveNode = '/guardar/';
+$pageListNode = '/lista';
+$apiSaveNode = '/save';
+$apiDeleteNode = '/delete';
 
-define('IMAGE', 'imagenes/');
-define('PAGE_IMAGE_SAVE', IMAGE . 'guardar/');
-define('PAGE_IMAGE_LIST', IMAGE . 'lista');
-define('API_IMAGE_SAVE', IMAGE . 'save');
-define('API_IMAGE_DEL', IMAGE . 'delete/');
+define('TAG', 'etiquetas');
+define('PAGE_TAG_SAVE', TAG . $pageSaveNode);
+define('PAGE_TAG_LIST', TAG . $pageListNode);
+define('API_TAG_SAVE', TAG . $apiSaveNode);
+define('API_TAG_DEL', TAG . $apiDeleteNode);
 
-define('POST', 'entradas/');
-define('PAGE_POST_SAVE', POST . 'guardar/');
-define('PAGE_POST_LIST', POST . 'lista');
-define('API_POST_SAVE', POST . 'save');
-define('API_POST_DEL', POST . 'delete/');
+define('IMAGE', 'imagenes');
+define('PAGE_IMAGE_SAVE', IMAGE . $pageSaveNode);
+define('PAGE_IMAGE_LIST', IMAGE . $pageListNode);
+define('API_IMAGE_SAVE', IMAGE . $apiSaveNode);
+define('API_IMAGE_DEL', IMAGE . $apiDeleteNode);
 
-define('SPAREDATE', 'diaslibres/');
-define('PAGE_SPAREDATE_SAVE', SPAREDATE . 'guardar');
-define('API_SPAREDATE_SAVE', SPAREDATE . 'save');
+define('POST', 'entradas');
+define('PAGE_POST_SAVE', POST . $pageSaveNode);
+define('PAGE_POST_LIST', POST . $pageListNode);
+define('API_POST_SAVE', POST . $apiSaveNode);
+define('API_POST_DEL', POST . $apiDeleteNode);
+
+define('SPAREDATE', 'diaslibres');
+define('PAGE_SPAREDATE_SAVE', SPAREDATE . $pageSaveNode);
+define('API_SPAREDATE_SAVE', SPAREDATE . $apiSaveNode);
 
 // Public routes
+define('PUBLIC_FOLDER', 'public/');
 define('PAGE_ERROR', 'apperror');
-define('PAGE_APPOINTMENT', 'citas');
+define('APPOINTMENT', 'citas');
+define('HOME', 'inicio');
+define('PRICES', 'precios');
+define('POSTS', 'articulos');
+define('CONTACT', 'contacto');

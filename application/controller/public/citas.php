@@ -6,17 +6,15 @@ class Citas extends Controller
     {
         // Load Google authentication
         require_once APP . 'core/authentication.php';
-        require_once APP . 'core/utils.php';
-        // If not logged, exit
-        Utils::checkSession();        
+        require_once APP . 'core/utils.php';       
     }
 
     public function index()
     {
         // Load views
-        require_once APP . 'view/includes/header.php';
-        require_once APP . 'view/home/index.php';
-        require_once APP . 'view/includes/footer.php';
+        require_once APP . 'view/public/includes/header.php';
+        require_once APP . 'view/public/calendar/index.php';
+        require_once APP . 'view/public/includes/footer.php';
     }
 
     public function add()

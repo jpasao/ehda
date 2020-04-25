@@ -5,21 +5,44 @@ class Application
     private $url_controller = null;
     private $url_action = null;
     private $url_params = array();    
+    private $adminArray = array(ADMIN, LOGIN, POST, TAG, IMAGE, SPAREDATE, PAGE_ADMIN_ERROR);
+    private $publicArray = array(HOME, APPOINTMENT, PRICES, POSTS, CONTACT, PAGE_ERROR);
+    private $isAdmin = null;
+    private $isPublic = null;
+    private $page = null;
+    private $existController = null;
 
     public function __construct()
     {
         $this->splitUrl();
+        $this->checkPage();
 
         // Check for controller: no controller given? then load start-page
-        if (!$this->url_controller) 
+        if ($this->existController == false) 
         {
-            require_once APP . 'controller/citas.php';
-            $page = new Citas();
+            require_once APP . 'controller/public/inicio.php';
+            $page = new Inicio();
             $page->index();
         } 
-        elseif (file_exists(APP . 'controller/' . $this->url_controller . '.php')) 
+        else 
         {
-            require_once APP . 'controller/' . $this->url_controller . '.php';
+            $controllerFolder = null;
+            if ($this->isAdmin)
+            {
+                $controllerPath = ADMIN_FOLDER;
+            }
+            elseif ($this->isPublic)
+            {
+                $controllerPath = PUBLIC_FOLDER;
+            }
+            else
+            {
+                header('location: ' . $this->getErrorPage());
+                return;
+            }
+
+            // Load controller
+            require_once APP . 'controller/' . $controllerPath . $this->url_controller . '.php';
             $this->url_controller = new $this->url_controller();
 
             if (method_exists($this->url_controller, $this->url_action)) 
@@ -44,16 +67,13 @@ class Application
                     header('location: ' . $this->getErrorPage());                
                 }                
             }
-        } 
-        else 
-        {
-            header('location: ' . $this->getErrorPage());            
+
         }
     }
 
     private function splitUrl()
     {
-        $url = $_GET['url'];
+        $url = $this->getUrl();
         if (isset($url)){
             // split URL            
             $urlArray = trim($url, '/');
@@ -62,7 +82,17 @@ class Application
             $urlArray = explode('/', $urlArray);
 
             // Put URL parts into according properties
-            $this->url_controller = isset($urlArray[0]) ? $urlArray[0] : null;
+            if (isset($urlArray[0]))
+            {
+                $this->url_controller = $urlArray[0];
+                $this->existController = true;
+            }
+            else 
+            {
+                $this->url_controller = null;
+                $this->existController = false;
+            }
+            
             $this->url_action = isset($urlArray[1]) ? $urlArray[1] : null;
 
             // Remove controller and action from the split URL
@@ -71,24 +101,81 @@ class Application
             // Rebase array keys and store the URL params
             $this->url_params = array_values($urlArray);
         }
+        else
+        {
+            $this->existController = false;
+        }
     }  
     
     private function getErrorPage()
     {
         $errorPage = URL . PAGE_ERROR;
-        $url = $_GET['url'];
-        $adminArray = array(ADMIN, POST, TAG, IMAGE, SPAREDATE);
-        foreach ($adminArray as $adminRoute)
+        $url = $this->getUrl();
+        
+        if (isset($url))
         {
-            if (strpos($url, $adminRoute) !== false)
+            foreach ($this->adminArray as $adminRoute)
             {
-                $errorPage = URL . PAGE_ADMIN_ERROR;
-                $_SESSION['adminerror'] = 'Se estaba visitando ' . $url;
-                break;
+                if (strpos($url, $adminRoute) !== false)
+                {
+                    if(!isset($_SESSION)) 
+                    { 
+                        session_start(); 
+                    }                     
+                    $errorPage = URL . PAGE_ADMIN_ERROR;
+                    $_SESSION['adminerror'] = 'Se estaba visitando ' . $url;
+                    break;
+                }
             }
+            unset($url);
         }
 
         return $errorPage;
+    }
+
+    private function checkPage()
+    {
+        $url = $this->getUrl();
+        $found = null;
+        if (isset($url))
+        {
+            foreach ($this->publicArray as $publicRoute)
+            {
+                if ($url === $publicRoute)
+                {
+                    $this->isPublic = true;
+                    $this->page = $publicRoute;
+                    break;
+                }
+            }
+            if ($this->isPublic !== true)
+            { 
+                $url =  explode('/', $url)[0];
+                foreach ($this->adminArray as $adminRoute)
+                {
+                    if ($url === $adminRoute)
+                    {
+                        $this->isAdmin = true;
+                        $this->page = $adminRoute;
+                        break;
+                    }
+                }
+            }
+        }
+        unset($url);
+        unset($found);
+    }
+
+    private function getUrl()
+    {
+        $res = null;
+
+        if (isset($_GET) && isset($_GET['url']))
+        {
+            $res = $_GET['url'];
+        }
+
+        return $res;
     }
 }
 

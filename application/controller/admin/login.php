@@ -5,7 +5,7 @@ class Login extends Controller
     public function index()
     {
         // Load view
-        require_once APP . 'view/login/index.php';
+        require_once APP . 'view/admin/login/index.php';
     }
 
     public function signin()

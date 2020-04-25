@@ -104,7 +104,7 @@
                             </li>
                         </ul>                        
                         <ul class="list-unstyled">
-                            <li><a href="<?php echo URL . PAGE_APPOINTMENT; ?>" target="_blank"><i class="la la-angle-left"></i><span>Volver a la aplicación</span><i class="la la-external-link super"></i></a></li>
+                            <li><a href="<?php echo URL . APPOINTMENT; ?>" target="_blank"><i class="la la-angle-left"></i><span>Volver a la aplicación</span><i class="la la-external-link super"></i></a></li>
                         </ul>
                         <!-- End Main Navigation -->
                     </nav>

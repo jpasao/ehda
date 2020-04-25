@@ -22,7 +22,7 @@
                         <h1>404</h1>
                         <h2>Ehm... esto es embarazoso</h2>
                         <p>Es hora de que llames a tu marido.</p>
-                        <h3><?php echo $errorMessage; ?></h3>
+                        <h4><?php echo $errorMessage; ?></h4>
                         <a href="<?php echo URL . PAGE_ADMIN_HOME; ?>" class="btn btn-gradient-05 btn-square">
                             Volver
                         </a>

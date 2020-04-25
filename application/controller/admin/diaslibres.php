@@ -86,6 +86,8 @@ class Diaslibres extends Controller
                     $isEndDate = $this->isEndDateReached($timeStampIncreased, $endDate);
     
                 } while ($isEndDate == false);
+
+                header('location: ' . URL . PAGE_SPAREDATE_SAVE);
             }             
             catch(Exception $e) 
             {  
@@ -96,7 +98,6 @@ class Diaslibres extends Controller
         {
             header('location: ' . URL . PAGE_SPAREDATE_SAVE);
         }
-
     }
 
     private function isEndDateReached($attemptDate, $endDate)
