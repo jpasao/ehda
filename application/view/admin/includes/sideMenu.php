@@ -100,7 +100,10 @@
                                 </a>
                                 <ul id="dropdown-calendar" class="collapse list-unstyled pt-0">
                                     <li><a href="<?php echo URL . PAGE_SPAREDATE_SAVE; ?>" id="subSectionCalendar">Añadir días ocupados</a></li>                                    
-                                </ul>                                
+                                </ul>  
+                                <ul id="dropdown-calendar" class="collapse list-unstyled pt-0">
+                                    <li><a href="<?php echo URL . PAGE_CLOSEDATE_SAVE; ?>" id="subSectionCalendar">Añadir cita cercana</a></li>                                    
+                                </ul>                                                                
                             </li>
                         </ul>                        
                         <ul class="list-unstyled">

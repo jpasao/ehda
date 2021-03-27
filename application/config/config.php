@@ -67,6 +67,10 @@ define('SPAREDATE', 'diaslibres');
 define('PAGE_SPAREDATE_SAVE', SPAREDATE . $pageSaveNode);
 define('API_SPAREDATE_SAVE', SPAREDATE . $apiSaveNode);
 
+define('CLOSEDATE', 'citacercana');
+define('PAGE_CLOSEDATE_SAVE', CLOSEDATE . $pageSaveNode);
+define('API_CLOSEDATE_SAVE', CLOSEDATE . $apiSaveNode);
+
 // Public routes
 define('PUBLIC_FOLDER', 'public/');
 define('PAGE_ERROR', 'apperror');

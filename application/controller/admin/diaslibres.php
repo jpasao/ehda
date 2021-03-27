@@ -29,7 +29,7 @@ class Diaslibres extends Controller
 
     public function save()
     {
-        if (isset($_POST['save']) && isset($_POST['fromDate']) && $_POST['fromDate'] != '')
+        if (isset($_POST['save']) && isset($_POST['fromDate']) && !empty($_POST['fromDate']))
         {
             $fromDate = $_POST['fromDate'];
             $fromTime = $_POST['fromTime'];

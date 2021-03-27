@@ -5,8 +5,8 @@ class Application
     private $url_controller = null;
     private $url_action = null;
     private $url_params = array();    
-    private $adminArray = array(ADMIN, LOGIN, POST, TAG, IMAGE, SPAREDATE, PAGE_ADMIN_ERROR);
-    private $publicArray = array(HOME, APPOINTMENT, PRICES, POSTS, CONTACT, PAGE_ERROR);
+    private $adminArray = array(ADMIN, LOGIN, POST, TAG, IMAGE, SPAREDATE, CLOSEDATE, PAGE_ADMIN_ERROR);
+    private $publicArray = array(HOME, APPOINTMENT, APPOINTMENT . '/add', PRICES, POSTS, CONTACT, PAGE_ERROR);
     private $isAdmin = null;
     private $isPublic = null;
     private $page = null;
