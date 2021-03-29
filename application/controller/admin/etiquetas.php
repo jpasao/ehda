@@ -2,18 +2,20 @@
 
 class Etiquetas extends Controller
 {
+    private $operationName = 'etiquetas';
     public function __construct()
     {
         parent::__construct();
-        require_once APP . 'core/utils.php';      
-        // If not logged, exit
+        require_once APP . 'core/utils.php';  
+        require_once APP . 'core/logger.php';    
         Utils::checkSession();
     }
 
     public function guardar($id)
     {   
         try 
-        {            
+        {    
+            Logger::debug('Acceso a guardado de ' . $this->operationName . '. Id: ' . $id, true);         
             $userName = $_SESSION['name'];    
             $literal;
             $tag = null;
@@ -35,14 +37,15 @@ class Etiquetas extends Controller
         } 
         catch (Exception $e) 
         {
-            Utils::redirectToAdminErrorPage('carga del guardado de etiquetas', $e);        
+            Utils::redirectToAdminErrorPage('carga del guardado de ' . $this->operationName, $e);        
         } 
     }
 
     public function lista()
     {
         try 
-        {            
+        {        
+            Logger::debug('Acceso a listado de ' . $this->operationName, true);              
             $userName = $_SESSION['name'];   
             $tags = $this->modelTags->GetTagList();
     
@@ -54,7 +57,7 @@ class Etiquetas extends Controller
         } 
         catch (Exception $e) 
         {
-            Utils::redirectToAdminErrorPage('listado de etiquetas', $e);            
+            Utils::redirectToAdminErrorPage('listado de ' . $this->operationName, $e);            
         }
     }
 
@@ -63,16 +66,18 @@ class Etiquetas extends Controller
         try 
         {            
             if (isset($_POST['save'])){
+                Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 $id = $_POST['id'];
                 $name = $_POST['name'];
                 $this->modelTags->SaveTag($id, $name);
             }
     
+            Logger::debug('Fin de guardado de ' . $this->operationName, true);
             header('location: ' . URL . PAGE_TAG_LIST);
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('guardado de etiquetas', $e);
+			Utils::redirectToAdminErrorPage('guardado de ' . $this->operationName, $e);
         }
     }
 
@@ -80,12 +85,13 @@ class Etiquetas extends Controller
     {
         try 
         {            
+            Logger::debug('Borrado de ' . $this->operationName . '. Id: ' . $id, true);    
             $this->modelTags->DeleteTag($id);
             header('location: ' . URL . PAGE_TAG_LIST);
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('borrado de etiquetas', $e);
+			Utils::redirectToAdminErrorPage('borrado de ' . $this->operationName, $e);
         }
     }
 }

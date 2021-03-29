@@ -1,0 +1,2 @@
+[19:58:53 28-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - N/A 
+[20:01:09 28-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Visited 

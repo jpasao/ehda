@@ -1,0 +1,13 @@
+[09:06:20 29-Mar-2021] [192.168.0.6/ehda/application/core/logger.php] [42] : [DEBUG] - Accesing diaslibres 
+[14:28:47 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a listado de  
+[14:34:10 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a listado de entrada 
+[14:34:18 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a guardado de entrada. Id: nueva 
+[14:34:25 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a listado de etiquetas 
+[14:34:30 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a guardado de etiquetas. Id: nueva 
+[14:34:37 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a listado de imágenes 
+[14:34:46 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a guardado de imágenes. Id: nueva 
+[14:34:53 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a días libres 
+[14:34:59 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a cita cercana 
+[14:35:06 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a guardado de imágenes. Id: nueva 
+[15:18:50 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a listado de etiquetas 
+[15:23:28 29-Mar-2021] : [DEBUG] - Acceso a listado de etiquetas

@@ -2,18 +2,20 @@
 
 class Imagenes extends Controller
 {
+    private $operationName = 'imágenes';
     public function __construct()
     {
         parent::__construct();
-        require_once APP . 'core/utils.php';      
-        // If not logged, exit
+        require_once APP . 'core/utils.php';    
+        require_once APP . 'core/logger.php';   
         Utils::checkSession();
     }
 
     public function guardar($id)
     {
         try 
-        {            
+        {  
+            Logger::debug('Acceso a guardado de ' . $this->operationName . '. Id: ' . $id, true);                            
             $userName = $_SESSION['name'];
             $literal;
             $image = null;
@@ -37,14 +39,15 @@ class Imagenes extends Controller
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('carga del guardado de imágenes', $e);
+			Utils::redirectToAdminErrorPage('carga del guardado de ' . $this->operationName, $e);
         }
     }
 
     public function lista()
     {
         try 
-        {            
+        {  
+            Logger::debug('Acceso a listado de ' . $this->operationName, true);                    
             $userName = $_SESSION['name'];
             $images = $this->modelImages->GetImageList();
     
@@ -56,7 +59,7 @@ class Imagenes extends Controller
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('listado de imágenes', $e);
+			Utils::redirectToAdminErrorPage('listado de ' . $this->operationName, $e);
         }
     }
 
@@ -65,6 +68,7 @@ class Imagenes extends Controller
         try 
         {            
             if (isset($_POST['save'])){
+                Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 $id = $_POST['id'];
                 $name = $_POST['name'];
                 
@@ -124,25 +128,29 @@ class Imagenes extends Controller
     
                 if ($saveToDb)
                 {
-                    $this->modelImages->SaveImage($id, $name, $fileName);                        
+                    $this->modelImages->SaveImage($id, $name, $fileName);  
+                    Logger::debug('Fin de guardado de ' . $this->operationName, true);                      
                     header('location: ' . URL . PAGE_IMAGE_LIST);                
                 }
                 else 
                 {
+                    Logger::error('Fin de guardado de ' . $this->operationName, true);
                     header('location: ' . URL . PAGE_IMAGE_SAVE . 'error' . $error);
                 }
             }        
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('guardado de imágenes', $e);
+			Utils::redirectToAdminErrorPage('guardado de ' . $this->operationName, $e);
         }
     }
 
     public function delete($id)
     {
         try 
-        {            
+        {        
+            Logger::debug('Borrado de ' . $this->operationName . '. Id: ' . $id, true);    
+                
             // First delete image on disk
             $image = $this->modelImages->GetImage($id);
             if (empty($image) == false)
@@ -160,7 +168,7 @@ class Imagenes extends Controller
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('borrado de imágenes', $e);
+			Utils::redirectToAdminErrorPage('borrado de ' . $this->operationName, $e);
         }
     }
 }

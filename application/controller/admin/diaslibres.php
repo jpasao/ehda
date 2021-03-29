@@ -2,19 +2,22 @@
 
 class Diaslibres extends Controller
 {
+    private $operationName = 'días libres';
     public function __construct()
     {
         parent::__construct();
         // Load Google authentication
         require_once APP . 'core/authentication.php';
         require_once APP . 'core/utils.php';
+        require_once APP . 'core/logger.php';
         Utils::checkSession();
     }
 
     public function guardar()
     {    
         try 
-        {            
+        {   
+            Logger::debug('Acceso a ' . $this->operationName, true);           
             $userName = $_SESSION['name']; 
             require_once APP . 'view/admin/includes/header.php';
             require_once APP . 'view/admin/includes/sideMenu.php';
@@ -23,7 +26,7 @@ class Diaslibres extends Controller
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('carga del guardado de días libres', $e);             
+			Utils::redirectToAdminErrorPage('carga del guardado de ' . $this->operationName, $e);             
         }
     }
 
@@ -48,6 +51,7 @@ class Diaslibres extends Controller
 
             try 
             {
+                Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 // Authenticate service account
                 $auth = new Authentication();
                 
@@ -86,16 +90,17 @@ class Diaslibres extends Controller
                     $isEndDate = $this->isEndDateReached($timeStampIncreased, $endDate);
     
                 } while ($isEndDate == false);
-
+                Logger::debug('Fin de guardado de ' . $this->operationName, true);
                 header('location: ' . URL . PAGE_SPAREDATE_SAVE);
             }             
             catch(Exception $e) 
             {  
-                Utils::redirectToAdminErrorPage('guardado de días libres', $e);
+                Utils::redirectToAdminErrorPage('guardado de ' . $this->operationName, $e);
             }           
         }
         else 
         {
+            Logger::error('Faltan parámetros para guardado de ' . $this->operationName, true);
             header('location: ' . URL . PAGE_SPAREDATE_SAVE);
         }
     }
@@ -105,11 +110,13 @@ class Diaslibres extends Controller
         try 
         {            
             // Check if event about to save is within time limits
-            return $attemptDate >= $endDate;
+            $dateReached = $attemptDate >= $endDate;
+            
+            return $dateReached;
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('comprobación de final de días libres', $e);
+			Utils::redirectToAdminErrorPage('comprobación de final de ' . $this->operationName, $e);
         }
     }
 
@@ -120,11 +127,13 @@ class Diaslibres extends Controller
             // Check if event about to create is within working hours (10 to 19) or weekend
             $hour = date('G', $attemptDate->format('U'));
             $dayOfWeek = date('N', $attemptDate->format('U'));
-            return ($hour > 8 && $hour < 20) && $dayOfWeek < 6;
+            $workingTime = ($hour > 8 && $hour < 20) && $dayOfWeek < 6;
+           
+            return $workingTime;
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('comprobación de horas laborables en días libres', $e);
+			Utils::redirectToAdminErrorPage('comprobación de horas laborables en ' . $this->operationName, $e);
         }
     }
 }

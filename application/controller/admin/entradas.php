@@ -2,18 +2,20 @@
 
 class Entradas extends Controller
 {
+    private $operationName = 'entrada';
     public function __construct()
     {
         parent::__construct();
-        require_once APP . 'core/utils.php';      
-        // If not logged, exit
+        require_once APP . 'core/utils.php';     
+        require_once APP . 'core/logger.php';         
         Utils::checkSession();
     }
 
     public function guardar($id)
     {
         try 
-        {            
+        {       
+            Logger::debug('Acceso a guardado de ' . $this->operationName . '. Id: ' . $id, true);                  
             $userName = $_SESSION['name'];    
     
             $literal;
@@ -42,7 +44,7 @@ class Entradas extends Controller
         } 
         catch (Exception $e) 
         {
-            Utils::redirectToAdminErrorPage('carga del guardado de entradas', $e);              
+            Utils::redirectToAdminErrorPage('carga del guardado de ' . $this->operationName, $e);              
         }
     }
 
@@ -52,6 +54,7 @@ class Entradas extends Controller
         {            
             if (isset($_POST['save']))
             {
+                Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 $id = $_POST['id'];
                 $title = $_POST['title'];
                 $body = $_POST['bodyTag'];
@@ -72,19 +75,20 @@ class Entradas extends Controller
                 // Post image data
                 $this->modelImages->SavePostImages($id, $image);
             }
-    
+            Logger::debug('Fin de guardado de ' . $this->operationName, true);
             header('location: ' . URL . PAGE_POST_LIST);
         }        
         catch (Exception $e) 
         {
-            Utils::redirectToAdminErrorPage('guardado de entradas', $e);               
+            Utils::redirectToAdminErrorPage('guardado de ' . $this->operationName, $e);               
         }
     }
 
     public function lista()
     {
         try 
-        {            
+        {    
+            Logger::debug('Acceso a listado de ' . $this->operationName, true);          
             $userName = $_SESSION['name'];    
             $posts = $this->modelPosts->GetPostList();
             
@@ -96,7 +100,7 @@ class Entradas extends Controller
         } 
         catch (Exception $e) 
         {
-            Utils::redirectToAdminErrorPage('listado de entradas', $e);                
+            Utils::redirectToAdminErrorPage('listado de ' . $this->operationName, $e);                
         }        
     }
 
@@ -104,12 +108,13 @@ class Entradas extends Controller
     {
         try 
         {            
+            Logger::debug('Borrado de ' . $this->operationName . '. Id: ' . $id, true);    
             $this->modelPosts->DeletePost($id);
             header('location: ' . URL . PAGE_POST_LIST);
         } 
         catch (Exception $e) 
         {
-            Utils::redirectToAdminErrorPage('borrado de entradas', $e);               
+            Utils::redirectToAdminErrorPage('borrado de ' . $this->operationName, $e);               
         }        
     }
 }

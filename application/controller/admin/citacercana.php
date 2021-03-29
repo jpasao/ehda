@@ -2,12 +2,14 @@
 
 class Citacercana extends Controller
 {
+    private $operationName = 'cita cercana';
     public function __construct()
     {
         parent::__construct();
         // Load Google authentication
         require_once APP . 'core/authentication.php';
         require_once APP . 'core/utils.php';
+        require_once APP . 'core/logger.php';
         Utils::checkSession();
     }
 
@@ -15,15 +17,16 @@ class Citacercana extends Controller
     {    
         try 
         {            
+            Logger::debug('Acceso a ' . $this->operationName, true);                 
             $userName = $_SESSION['name']; 
             require_once APP . 'view/admin/includes/header.php';
             require_once APP . 'view/admin/includes/sideMenu.php';
             require_once APP . 'view/admin/calendar/addCloseAppointment.php';
-            require_once APP . 'view/admin/includes/footer.php';        
+            require_once APP . 'view/admin/includes/footer.php'; 
         } 
         catch (Exception $e) 
         {
-			Utils::redirectToAdminErrorPage('carga del guardado de cita cercana', $e);             
+			Utils::redirectToAdminErrorPage('carga del guardado de ' . $this->operationName, $e);             
         }
     }
 
@@ -43,10 +46,11 @@ class Citacercana extends Controller
             $email = $_POST['email']; 
             $name = $_POST['name'];             
             $eventMessage = 'Cita para ' . $name . ' el ' . $fromDate . ' a las ' . $fromTime;
-            $eventTitle = 'Sesión Psicólogo';
+            $eventTitle = 'Sesión Psicología';
 
             try 
             {
+                Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 // Authenticate service account
                 $auth = new Authentication();
 
@@ -64,16 +68,18 @@ class Citacercana extends Controller
     
                 // Create new event
                 Utils::buildEvent($auth, $eventTitle, $eventMessage, $dateStart, $fromTime, $dateEnd, '9', $email);
-              
+                
+                Logger::debug('Fin de guardado de ' . $this->operationName, true);
                 header('location: ' . URL . PAGE_CLOSEDATE_SAVE);
             }             
             catch(Exception $e) 
-            {  
-                Utils::redirectToAdminErrorPage('guardado de cita cercana', $e);
+            {                  
+                Utils::redirectToAdminErrorPage('guardado de ' . $this->operationName, $e);
             }           
         }
         else 
         {
+            Logger::error('Faltan parámetros para guardado de ' . $this->operationName, true);
             header('location: ' . URL . PAGE_CLOSEDATE_SAVE);
         }
     }

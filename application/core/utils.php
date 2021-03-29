@@ -91,7 +91,7 @@ class Utils
             ),
             'colorId' => $color
         );
-             
+
         if (!empty($atendeeEmail))
         {
             $basicArray['attendees'] = array(array('email' => $atendeeEmail));
@@ -131,7 +131,11 @@ class Utils
     // Redirect to admin error page
     public function redirectToAdminErrorPage($errorMessage, $exception)
     {
-        $_SESSION['adminerror'] = 'Excepción en ' . $errorMessage . ': ' . $exception->getMessage();  
+        require_once APP . 'core/logger.php';
+
+        $message = 'Excepción en ' . $errorMessage . ': ' . $exception->getMessage();
+        Logger::error($message, true);
+        $_SESSION['adminerror'] = $message;  
         header('location: ' . URL . PAGE_ADMIN_ERROR); 
     } 
 }

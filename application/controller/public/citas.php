@@ -2,15 +2,18 @@
 
 class Citas extends Controller
 {
+    private $operationName = 'petición de cita';
     public function __construct()
     {
         // Load Google authentication
         require_once APP . 'core/authentication.php';
         require_once APP . 'core/utils.php';       
+        require_once APP . 'core/logger.php';
     }
 
     public function index()
     {
+        Logger::debug('Acceso a ' . $this->operationName, false);  
         // Load views
         require_once APP . 'view/public/includes/header.php';
         require_once APP . 'view/public/calendar/index.php';
@@ -31,6 +34,7 @@ class Citas extends Controller
 
             try 
             {
+                Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 // Authenticate service account
                 $auth = new Authentication();
 
@@ -54,17 +58,20 @@ class Citas extends Controller
                     Utils::buildEvent($auth, $eventTitle, $contactInfo, $dateStart, $hour, $dateEnd, '9');
                     $response['status'] = 1;      
                     $response['statusMsg'] = 'La cita se ha guardado correctamente';
+                    Logger::debug('Fin de guardado de ' . $this->operationName . '. Cita guardada correctamente', true);
                 }
                 else 
                 {
                     $response['status'] = 0; 
-                    $response['statusMsg'] = 'Hay una cita cercana. Por favor, elija otro momento';                        
+                    $response['statusMsg'] = 'Hay una cita cercana. Por favor, elija otro momento';        
+                    Logger::debug('Fin de guardado de ' . $this->operationName . '. Existe una cita cercana', true);                
                 }                
             }
             catch(Exception $e) 
             {      
                 $response['status'] = -1; 
-                $response['statusMsg'] = 'Ha ocurrido un error al guardar la cita: ' . $e->getMessage();                         
+                $response['statusMsg'] = 'Ha ocurrido un error al guardar la cita: ' . $e->getMessage();      
+                Logger::debug('Error en guardado de ' . $this->operationName . ': ' . $e->getMessage(), true);                   
             }
             finally
             {

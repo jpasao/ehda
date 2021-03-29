@@ -1,0 +1,7 @@
+[14:35:14 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a petición de cita 
+[14:35:37 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a contacto 
+[14:35:47 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a precios 
+[14:36:15 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a artículos 
+[14:36:21 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a inicio 
+[14:52:45 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a inicio 
+[14:52:55 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a contacto 
