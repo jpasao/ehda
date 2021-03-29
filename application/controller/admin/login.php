@@ -3,16 +3,18 @@
 class Login extends Controller
 {
     private $operationName = 'entrada';
+
     public function index()
     {
         // Load view
-        require_once APP . 'view/admin/login/index.php';
-        require_once APP . 'core/logger.php';     
+        require_once APP . 'view/admin/login/index.php';     
+        require APP . 'core/logger.php';        
     }
 
     public function signin()
     {
         require_once APP . 'core/utils.php';  
+        require APP . 'core/logger.php';
         if(!isset($_SESSION)) 
         { 
             session_start(); 
@@ -70,7 +72,8 @@ class Login extends Controller
     public function signout()
     {
         try 
-        {            
+        {      
+            require APP . 'core/logger.php';       
             Logger::debug('Acceso a logout', true);          
             session_start();
             unset($_SESSION['logged']);

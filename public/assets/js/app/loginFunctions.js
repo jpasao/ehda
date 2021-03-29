@@ -38,7 +38,8 @@ function login(){
             if (result.status !== 1){
                 // Show message
                 $errorMsg.removeClass('hide').addClass('show');
-                $errorMsg.find('span').html(result.statusMsg);
+                var message = result.statusMsg === undefined ? 'No se ha podido realizar el inicio de sesión' : result.statusMsg;
+                $errorMsg.find('span').html(message);
             }
             else {
                 // Redirect to admin page

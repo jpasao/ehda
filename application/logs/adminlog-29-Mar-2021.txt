@@ -11,3 +11,36 @@
 [14:35:06 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a guardado de imágenes. Id: nueva 
 [15:18:50 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a listado de etiquetas 
 [15:23:28 29-Mar-2021] : [DEBUG] - Acceso a listado de etiquetas
+[16:10:43 29-Mar-2021]  [DEBUG] - Acceso a listado de etiquetas
+[16:10:51 29-Mar-2021]  [DEBUG] - Acceso a días libres
+[16:10:58 29-Mar-2021]  [DEBUG] - Acceso a listado de imágenes
+[16:11:08 29-Mar-2021]  [DEBUG] - Acceso a listado de imágenes
+[16:11:19 29-Mar-2021]  [DEBUG] - Acceso a días libres
+[16:11:25 29-Mar-2021]  [DEBUG] - Acceso a cita cercana
+[16:13:47 29-Mar-2021]  [DEBUG] - Acceso a cita cercana
+[16:13:54 29-Mar-2021]  [DEBUG] - Acceso a días libres
+[16:13:59 29-Mar-2021]  [DEBUG] - Acceso a cita cercana
+[16:22:33 29-Mar-2021]  [DEBUG] - Acceso a cita cercana
+[16:22:40 29-Mar-2021]  [DEBUG] - Acceso a días libres
+[21:16:25 29-Mar-2021]  [DEBUG] - Inicio de entrada. Parámetros: {"username":"q","password":"q"}
+[23:22:04 29-Mar-2021]  [DEBUG] - Inicio de entrada. Parámetros: {"username":"q","password":"q"}
+[23:22:08 29-Mar-2021]  [DEBUG] - Fin de entrada
+[23:26:50 29-Mar-2021]  [DEBUG] - Inicio de entrada. Parámetros: {"username":"q","password":"q"}
+[23:26:50 29-Mar-2021]  [DEBUG] - Fin de entrada
+[23:26:56 29-Mar-2021]  [DEBUG] - Acceso a listado de etiquetas
+[23:28:09 29-Mar-2021]  [DEBUG] - Acceso a listado de etiquetas
+[23:29:06 29-Mar-2021]  [DEBUG] - Inicio de entrada. Parámetros: {"username":"q","password":"q"}
+[23:29:06 29-Mar-2021]  [DEBUG] - Fin de entrada
+[23:29:17 29-Mar-2021]  [DEBUG] - Acceso a listado de entrada
+[23:30:13 29-Mar-2021]  [DEBUG] - Acceso a guardado de entrada. Id: nueva
+[23:34:53 29-Mar-2021]  [DEBUG] - Acceso a listado de etiquetas
+[23:34:57 29-Mar-2021]  [DEBUG] - Acceso a guardado de etiquetas. Id: nueva
+[23:35:03 29-Mar-2021]  [DEBUG] - Acceso a listado de imágenes
+[23:35:22 29-Mar-2021]  [DEBUG] - Acceso a guardado de imágenes. Id: nueva
+[23:35:26 29-Mar-2021]  [DEBUG] - Acceso a listado de imágenes
+[23:35:51 29-Mar-2021]  [DEBUG] - Acceso a días libres
+[23:35:57 29-Mar-2021]  [DEBUG] - Acceso a cita cercana
+[23:39:03 29-Mar-2021] [DEBUG] - Acceso a cita cercana
+[23:39:13 29-Mar-2021] [DEBUG] - Acceso a listado de etiquetas
+[23:46:48 29-Mar-2021] [DEBUG] - Inicio de entrada. Parámetros: {"username":"q","password":"q"}
+[23:46:48 29-Mar-2021] [DEBUG] - Fin de entrada

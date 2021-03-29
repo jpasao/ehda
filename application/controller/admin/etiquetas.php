@@ -7,7 +7,7 @@ class Etiquetas extends Controller
     {
         parent::__construct();
         require_once APP . 'core/utils.php';  
-        require_once APP . 'core/logger.php';    
+        require APP . 'core/logger.php';    
         Utils::checkSession();
     }
 

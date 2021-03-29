@@ -8,7 +8,7 @@ class Logger
         'dateFormat' => 'd-M-Y',
         'logFormat' => 'H:i:s d-M-Y'
     ];
-    private static $instance;
+
     public static function createLogFile($isAdmin)
     {
         $prefix = $isAdmin ? 'admin' : '';
@@ -30,11 +30,6 @@ class Logger
             //throw exception if not writable
             throw new Exception("ERROR: Unable to write to file!", 1);
         }
-    }
-
-    public static function setOptions($options = [])
-    {
-        static::$options = array_merge(static::$options, $options);
     }
 
     public static function debug($message, $isAdmin)
@@ -73,7 +68,7 @@ class Logger
         $time = date(static::$options['logFormat']);
 
         // Create log variable = value pairs
-        $timeLog = is_null($time) ? "[N/A] " : "[{$time}] "; 
+        $timeLog = is_null($time) ? "[N/A] " : "[{$time}]"; 
         $severityLog = is_null($args['severity']) ? "[N/A]" : "[{$args['severity']}]";
         $messageLog = is_null($args['message']) ? "N/A" : "{$args['message']}";
        
@@ -96,20 +91,5 @@ class Logger
         if (static::$file) {
             fclose(static::$file);
         }
-    }
-
-    public static function absToRelPath($pathToConvert)
-    {
-        $pathAbs = str_replace(['/', '\\'], '/', $pathToConvert);
-        $documentRoot = str_replace(['/', '\\'], '/', $_SERVER['DOCUMENT_ROOT']);
-        return $_SERVER['SERVER_NAME'] . str_replace($documentRoot, '', $pathAbs);
-    }
-   
-    public static function getInstance()
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
     }
 }

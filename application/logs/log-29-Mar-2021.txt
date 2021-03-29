@@ -5,3 +5,10 @@
 [14:36:21 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a inicio 
 [14:52:45 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a inicio 
 [14:52:55 29-Mar-2021] [localhost/ehda/application/core/logger.php] [42] : [DEBUG] - Acceso a contacto 
+[23:21:27 29-Mar-2021]  [DEBUG] - Acceso a petición de cita
+[23:26:31 29-Mar-2021]  [DEBUG] - Acceso a petición de cita
+[23:28:51 29-Mar-2021]  [DEBUG] - Acceso a petición de cita
+[23:34:43 29-Mar-2021]  [DEBUG] - Acceso a contacto
+[23:34:43 29-Mar-2021]  [DEBUG] - Acceso a contacto
+[23:40:45 29-Mar-2021] [DEBUG] - Acceso a petición de cita
+[23:43:19 29-Mar-2021] [DEBUG] - Acceso a contacto

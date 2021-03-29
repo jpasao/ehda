@@ -9,7 +9,7 @@ class Diaslibres extends Controller
         // Load Google authentication
         require_once APP . 'core/authentication.php';
         require_once APP . 'core/utils.php';
-        require_once APP . 'core/logger.php';
+        require APP . 'core/logger.php';
         Utils::checkSession();
     }
 
