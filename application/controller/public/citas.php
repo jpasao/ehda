@@ -35,37 +35,50 @@ class Citas extends Controller
             try 
             {
                 Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
-                // Authenticate service account
-                $auth = new Authentication();
-
-                // Begin date        
-                $dateStart = Utils::buildStartDate($date, $hour);
-
-                // End date
-                $dateEnd = Utils::buildEndDate($date, $hour, $duration);  
-
-                // Previous hour
-                $prevHourObj = Utils::buildPrevHour($date, $hour); 
-
-                // Next hour
-                $nextHourObj = Utils::buildNextHour($date, $hour, $duration);                
-    
-                $freeMoment = Utils::CheckEventExists($prevHourObj, $nextHourObj, $auth);
                 
-                if ($freeMoment) 
+                // Check too late request
+                $tooLate = Utils::check24hoursBefore($date, $hour);
+
+                if ($tooLate == false)
                 {
-                    // Create new event
-                    Utils::buildEvent($auth, $eventTitle, $contactInfo, $dateStart, $hour, $dateEnd, '9');
-                    $response['status'] = 1;      
-                    $response['statusMsg'] = 'La cita se ha guardado correctamente';
-                    Logger::debug('Fin de guardado de ' . $this->operationName . '. Cita guardada correctamente', true);
+                    // Begin date        
+                    $dateStart = Utils::buildStartDate($date, $hour);
+                    
+                    // End date
+                    $dateEnd = Utils::buildEndDate($date, $hour, $duration);  
+                    
+                    // Previous hour
+                    $prevHourObj = Utils::buildPrevHour($date, $hour); 
+                    
+                    // Next hour
+                    $nextHourObj = Utils::buildNextHour($date, $hour, $duration);                
+                    
+                    // Authenticate service account
+                    $auth = new Authentication();
+                    $freeMoment = Utils::CheckEventExists($prevHourObj, $nextHourObj, $auth);
+                    
+                    if ($freeMoment) 
+                    {
+                        // Create new event
+                        Utils::buildEvent($auth, $eventTitle, $contactInfo, $dateStart, $hour, $dateEnd, '9');
+                        $response['status'] = 1;      
+                        $response['statusMsg'] = 'La cita se ha guardado correctamente';
+                        Logger::debug('Fin de guardado de ' . $this->operationName . '. Cita guardada correctamente', true);
+                    }
+                    else 
+                    {
+                        $response['status'] = 0; 
+                        $response['statusMsg'] = 'Hay una cita cercana. Por favor, elija otro momento';        
+                        Logger::debug('Fin de guardado de ' . $this->operationName . '. Existe una cita cercana', true);                
+                    }    
                 }
                 else 
                 {
                     $response['status'] = 0; 
-                    $response['statusMsg'] = 'Hay una cita cercana. Por favor, elija otro momento';        
-                    Logger::debug('Fin de guardado de ' . $this->operationName . '. Existe una cita cercana', true);                
-                }                
+                    $response['statusMsg'] = 'La cita debe pedirse con al menos 24 horas de antelación';        
+                    Logger::debug('Fin de guardado de ' . $this->operationName . '. La cita tiene menos de 24 horas de antelación', true);  
+                }
+
             }
             catch(Exception $e) 
             {      

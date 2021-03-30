@@ -45,6 +45,16 @@ class Utils
         return (empty($events));                
     }
 
+    // Check event is at least within 24h
+    public static function check24hoursBefore($date, $hour)
+    {
+        $appointmentDate = self::BuildDate($date, $hour);
+        $now = new DateTime('now');
+
+        $interval= $appointmentDate->diff($now, true);
+        return (($interval->days * 24) + $interval->h) < 24;
+    }
+
     // Build calendar event start date
     public static function buildStartDate($date, $hour)
     {        
