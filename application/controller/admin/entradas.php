@@ -57,12 +57,14 @@ class Entradas extends Controller
                 Logger::debug('Inicio de guardado de ' . $this->operationName . '. Parámetros: ' . json_encode($_POST), true);
                 $id = $_POST['id'];
                 $title = $_POST['title'];
+                $slug = $_POST['slug'];
                 $body = $_POST['bodyTag'];
-                $tags = $_POST['tags'];
-                $image = $_POST['image'];
+                $tags = isset($_POST['tags']) ? $_POST['tags'] : [];
+                $image = isset($_POST['image']) ? $_POST['image'] : [];;
+                $published = isset($_POST['published']) ? 1 : 0;
     
                 // Post data
-                $this->modelPosts->SavePost($id, $title, $body);
+                $this->modelPosts->SavePost($id, $title, $slug, $body, $published);
                 if ($id == 0)
                 {
                     // Get the new inserted id to save tags and image

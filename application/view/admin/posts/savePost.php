@@ -1,12 +1,23 @@
 <?php 
     $idValue = 0;
     $titleValue = '';
+    $slugValue = '';
     $bodyValue = '';
+    $published = 0;
+    $publishedValue = '';
+    $titleState = 'required';
     
     if ($post != null) {
         $idValue = htmlspecialchars($post->id, ENT_QUOTES, 'UTF-8'); 
-        $titleValue = htmlspecialchars($post->title, ENT_QUOTES, 'UTF-8'); 
+        $titleValue = htmlspecialchars($post->title, ENT_QUOTES, 'UTF-8');
+        $slugValue = htmlspecialchars($post->slug, ENT_QUOTES, 'UTF-8'); 
         $bodyValue = htmlspecialchars($post->body, ENT_QUOTES, 'UTF-8'); 
+        $published = htmlspecialchars($post->published, ENT_QUOTES, 'UTF-8');
+        if ($published == 1)
+        {
+            $publishedValue = 'checked';
+            $titleState = 'readonly';
+        }      
     }
 ?>
 <div class="content-inner" id="PostAdd">
@@ -38,15 +49,28 @@
                                 <div class="col-lg-7">
                                     <input type="hidden" name="id" value="<?php echo $idValue; ?>" />                        
                                     <input type="text" 
+                                            id="title"
                                             name="title" 
                                             class="form-control" 
                                             placeholder="Título de la entrada" 
-                                            required
+                                            <?php echo $titleState; ?>                                            
                                             value="<?php echo $titleValue; ?>">
                                     <div class="invalid-feedback">
                                         Es necesario indicar el título de la entrada
                                     </div> 
-                                </div>                                
+                                </div>
+                            </div>
+                            <div class="form-group row d-flex align-items-center mb-5">
+                                <label class="col-lg-2 form-control-label d-flex justify-content-lg-end"></label>
+                                <div class="col-lg-7">                                                      
+                                    <input type="text"
+                                            id="slug" 
+                                            name="slug" 
+                                            class="form-control" 
+                                            readonly
+                                            placeholder="Url de la entrada"                                             
+                                            value="<?php echo $slugValue; ?>"> 
+                                </div>                                                                
                             </div>
                             <div class="form-group row d-flex align-items-center mb-5">
                                 <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Contenido</label>
@@ -82,7 +106,7 @@
                                                 $existImage = isset($image->filename);
                                                 if ($existImage) {  
                                                     $selected = '';  
-                                                    if ($image->id == $selectedImage->idimage){
+                                                    if (!empty($selectedImage) && $image->id == $selectedImage->idimage){
                                                         $selected = 'selected';
                                                         $matchImage = IMG_URL . $image->filename;
                                                     }     
@@ -95,7 +119,20 @@
                                 <div class="col-lg-3 text-right">
                                     <img id="imagePreview" src="<?php echo $matchImage; ?>" height="100px" />
                                 </div>
-                            </div>                             
+                            </div>       
+                            <div class="form-group row d-flex align-items-center mb-5">
+                                <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Publicada</label>
+                                <div class="col-lg-7">      
+                                    <div class="styled-checkbox">
+                                        <input type="checkbox"
+                                                id="published" 
+                                                name="published" 
+                                                class="form-control text-left"                                                                                                                                    
+                                                <?php echo $publishedValue; ?>> 
+                                        <label for="published">Entrada publicada</label>
+                                    </div>                                                
+                                </div>                                 
+                            </div>                      
                             <div class="text-right">
                                 <button class="btn btn-lg btn-gradient-05 btn-square" type="submit" name="save">Guardar</button>                                
                             </div>                                                                                   

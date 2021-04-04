@@ -148,4 +148,14 @@ class Utils
         $_SESSION['adminerror'] = $message;  
         header('location: ' . URL . PAGE_ADMIN_ERROR); 
     } 
+
+        // Redirect to public error page
+        public function redirectToErrorPage($errorMessage, $exception)
+        {
+            require_once APP . 'core/logger.php';
+    
+            $message = 'Excepción en ' . $errorMessage . ': ' . $exception->getMessage();
+            Logger::error($message, false);            
+            header('location: ' . URL . PAGE_ERROR); 
+        } 
 }

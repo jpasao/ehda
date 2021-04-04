@@ -6,7 +6,7 @@ class Application
     private $url_action = null;
     private $url_params = array();    
     private $adminArray = array(ADMIN, LOGIN, POST, TAG, IMAGE, SPAREDATE, CLOSEDATE, PAGE_ADMIN_ERROR);
-    private $publicArray = array(HOME, APPOINTMENT, APPOINTMENT . '/add', PRICES, POSTS, CONTACT, PAGE_ERROR);
+    private $publicArray = array(HOME, APPOINTMENT, PRICES, POSTS, CONTACT, PAGE_ERROR);
     private $isAdmin = null;
     private $isPublic = null;
     private $page = null;
@@ -64,10 +64,17 @@ class Application
                 }      
                 else
                 {
-                    header('location: ' . $this->getErrorPage());                
+                    // Check for post slug
+                    if ($this->page == POSTS)   
+                    {
+                        call_user_func_array(array($this->url_controller, 'searchSlug'), array($this->url_action));
+                    }  
+                    else 
+                    {
+                        header('location: ' . $this->getErrorPage());                
+                    }               
                 }                
             }
-
         }
     }
 
@@ -77,8 +84,6 @@ class Application
         if (isset($url)){
             // split URL            
             $urlArray = trim($url, '/');
-            
-            $urlArray = filter_var($urlArray, FILTER_SANITIZE_URL);
             $urlArray = explode('/', $urlArray);
 
             // Put URL parts into according properties
@@ -139,6 +144,7 @@ class Application
         $found = null;
         if (isset($url))
         {
+            $url =  explode('/', $url)[0];
             foreach ($this->publicArray as $publicRoute)
             {
                 if ($url === $publicRoute)
@@ -149,8 +155,7 @@ class Application
                 }
             }
             if ($this->isPublic !== true)
-            { 
-                $url =  explode('/', $url)[0];
+            {                 
                 foreach ($this->adminArray as $adminRoute)
                 {
                     if ($url === $adminRoute)

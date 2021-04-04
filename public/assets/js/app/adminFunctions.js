@@ -32,6 +32,7 @@ $(document).ready(function(){
     loadDatePicker();
     setSpareDates();
     setCloseDates();
+    generateSlug();
 });
 
 // Datatable loading
@@ -204,3 +205,32 @@ function newPost(){
         });
     }
 }
+
+// Event to create post title's slug
+function generateSlug(){
+    var $postTitle = $('#title');
+    var $slug = $('#slug');
+
+    $postTitle.on('keyup', function(){
+        $slug.val(this.value.hyphenify());
+    });
+}
+
+String.prototype.slugify = function (separator = "-") {
+    return this
+        .toString()
+        .normalize('NFD')                   // split an accented letter in the base letter and the acent
+        .replace(/[\u0300-\u036f]/g, '')   // remove all previously split accents
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9 ]/g, '')   // remove all chars not letters, numbers and spaces (to be replaced)
+        .replace(/\s+/g, separator);
+};  
+
+String.prototype.hyphenify = function (separator = "-") {
+    return this
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, separator);
+}; 

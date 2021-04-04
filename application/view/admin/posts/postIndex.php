@@ -25,6 +25,7 @@
                                 <thead>
                                     <tr>
                                         <th>Título</th>
+                                        <th>Publicada</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>  
@@ -35,6 +36,7 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $postTitle; ?></td>
+                                            <td><?php echo $post->published == '1' ? 'Sí' : 'No'; ?></td>
                                             <td class="td-actions actionColumn">
                                                 <a href="<?php echo URL . PAGE_POST_SAVE . $idPost; ?>"><i class="la la-edit edit"></i></a>
                                                 <a id="<?php echo $idPost; ?>"
