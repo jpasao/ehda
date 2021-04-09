@@ -1,4 +1,10 @@
-/*Calendario*/
+:root {
+    --pale-yellow: #e7cd6c;
+    --dark-green: #577379;
+    --darker-green: #004248;
+    --darkest-green: #013338;
+  }
+/*Calendar*/
 #appointmentCal {
     width: 90%;
     margin: 0px auto;
@@ -96,4 +102,52 @@
 /*Bootstrap select*/
 button.dropdown-toggle {
     border-radius: 0;
+}
+/* Admin color scheme */
+.default-sidebar{
+    background: var(--darker-green);
+}
+.default-sidebar>.side-navbar a[aria-expanded="true"],
+.default-sidebar>.side-navbar ul ul {
+    background: var(--darkest-green);
+}
+.default-sidebar>.side-navbar ul ul,
+.default-sidebar>.side-navbar li ul li a.active,
+.default-sidebar>.side-navbar ul ul a:hover,
+.default-sidebar>.side-navbar ul a:hover i
+{
+    color: var(--pale-yellow);
+}
+.default-sidebar>.side-navbar a[aria-expanded="true"] i {
+    color: var(--dark-green);
+}
+.btn-gradient-05, .btn-gradient-05 a {
+    background: linear-gradient(to right, var(--pale-yellow) 0%, var(--dark-green) 50%);    
+    transition: opacity 0.5s;   
+}
+.btn-gradient-05:hover, .btn-gradient-05 a:hover,
+#logout:hover {
+    opacity: 90%; 
+    background-position: inherit;   
+}
+.btn-gradient-05:active{
+    background-color: var(--dark-green);
+}
+.elisyam-overlay.overlay-01{
+    /* background: linear-gradient(135deg,#00424866 0%,#577379f2 100%); */
+    background: linear-gradient(135deg,var(--darker-green) 0%,var(--dark-green) 100%);
+}
+#logout{
+    background-color: var(--dark-green);
+    color: var(--pale-yellow);
+    transition: opacity 0.5s;   
+}
+button, .btn-square {
+    border-radius: 0.2em;
+}
+.spinner{
+    border-top-color: var(--dark-green);
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: var(--dark-green);
 }
