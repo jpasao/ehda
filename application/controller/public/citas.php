@@ -29,6 +29,7 @@ class Citas extends Controller
             $hour = $_POST['hour'];
             $duration = $_POST['duration'];
             $contactInfo = $_POST['contactInfo'];
+            $email = isset($_POST['email']) ? $_POST['email'] : null;
             $eventTitle = 'Sesión';
             $response = [];
 
@@ -60,7 +61,7 @@ class Citas extends Controller
                     if ($freeMoment) 
                     {
                         // Create new event
-                        Utils::buildEvent($auth, $eventTitle, $contactInfo, $dateStart, $hour, $dateEnd, '9');
+                        Utils::buildEvent($auth, $eventTitle, $contactInfo, $dateStart, $hour, $dateEnd, '9', $email);
                         $response['status'] = 1;      
                         $response['statusMsg'] = 'La cita se ha guardado correctamente';
                         Logger::debug('Fin de guardado de ' . $this->operationName . '. Cita guardada correctamente', true);

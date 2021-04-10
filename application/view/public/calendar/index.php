@@ -45,7 +45,23 @@
 											<textarea class="form-control" rows="3" id="contactInfo" placeholder="Incluya número de teléfono, ID de skype o correo electrónico" required></textarea>
 										</div>
 									</div>
-								</div>								
+								</div>
+								<div class="row">
+									<div class="col-12">										
+										<div id="contactEmailGroup" class="form-group">
+                                            <input class="form-check-input" type="checkbox" value="" id="copyInCalendar">
+                                            <label class="form-check-label" for="copyInCalendar">Quiero recibir una copia en mi calendario de Google</label>
+										</div>
+									</div>
+								</div>   
+								<div class="row" id="emailField" style="display:none">
+									<div class="col-12">										
+										<div id="emailGroup" class="form-group">
+											<label class="form-control-label" for="email">Email: </label>
+											<input type="text" class="form-control" id="email" placeholder="Dirección de correo">
+										</div>	
+									</div>
+								</div>                                                             								
 							</div>
 						</div>				
 						<div class="modal-footer">

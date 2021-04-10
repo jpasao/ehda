@@ -14,6 +14,7 @@ var $date;
 var $hour = $('#hour');
 var $hourGroup = $('#hourGroup');
 var $duration = $('#duration');
+var $email = $('#email');
 var $citeForm = $('#citeForm');
 var $modalTitle = $('#modalTitle');
 
@@ -30,10 +31,13 @@ function showModal(info){
         return false;
     }
 
-    $('#name, #hour, #contactInfo')
+    $('#name, #hour, #contactInfo, #email')
         .val('')
         .parent()
         .removeClass('has-error');
+    $('#copyInCalendar').prop('checked', false);
+    $('#emailField').hide();
+    
     
     var dateParsed = parseDate(cellDate);
     $date = dateParsed;
@@ -154,7 +158,8 @@ function sendForm(){
         date: $date,
         hour: $hour.val(),
         duration: $duration.val(),
-        contactInfo: $contactInfo.val()
+        contactInfo: $contactInfo.val(),
+        email: $email.val()
     };
    
     post(params, addEventEndPoint)
@@ -182,6 +187,11 @@ $submit.on('click', function(){
         btn.button('loading');
         sendForm();
     }
+});
+
+// Opens email field when user wants a copy in its calendar
+$('#copyInCalendar').on('click', function(){
+    $('#emailField').toggle();
 });
 
 (function($) {

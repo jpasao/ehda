@@ -88,28 +88,32 @@ class Utils
     // Build calendar event
     public static function buildEvent($auth, $eventSummary, $eventDescription, $dateStart, $hour, $dateEnd, $color, $atendeeEmail = NULL)
     { 
-        $basicArray = array(
-            'summary' => $eventSummary,
-            'description' => $eventDescription,
-            'start' => array(
-                'dateTime' => $dateStart . 'T' . $hour . ':00',
-                'timeZone' => self::$timeZone
-            ),
-            'end' => array(
-                'dateTime' => $dateStart . 'T' . $dateEnd,
-                'timeZone' => self::$timeZone
-            ),
-            'colorId' => $color
-        );
-
-        if (!empty($atendeeEmail))
-        {
-            $basicArray['attendees'] = array(array('email' => $atendeeEmail));
-        }  
-        $auth->event = new Google_Service_Calendar_Event($basicArray);
-
-        // Add new event to calendar
-        $auth->event = $auth->service->events->insert(CALENDARID, $auth->event); 
+        try {
+            $basicArray = array(
+                'summary' => $eventSummary,
+                'description' => $eventDescription,
+                'start' => array(
+                    'dateTime' => $dateStart . 'T' . $hour . ':00',
+                    'timeZone' => self::$timeZone
+                ),
+                'end' => array(
+                    'dateTime' => $dateStart . 'T' . $dateEnd,
+                    'timeZone' => self::$timeZone
+                ),
+                'colorId' => $color
+            );
+    
+            if (!empty($atendeeEmail))
+            {
+                $basicArray['attendees'] = array(array('email' => $atendeeEmail));
+            }  
+            $auth->event = new Google_Service_Calendar_Event($basicArray);
+    
+            // Add new event to calendar
+            $auth->event = $auth->service->events->insert(CALENDARID, $auth->event); 
+        } catch (Exception $e) {
+            self::redirectToErrorPage('guardado de cita en el calendario', $e);
+        }
     }
 
     // Checks if request is AJAX like
