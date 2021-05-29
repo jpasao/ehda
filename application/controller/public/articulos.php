@@ -15,6 +15,7 @@ class Articulos extends Controller
     
             // Load default views
             require_once APP . 'view/public/includes/header.php';
+            require_once APP . 'view/public/includes/menu.php';
             require_once APP . 'view/public/posts/index.php';
             require_once APP . 'view/public/includes/footer.php';            
         } 
@@ -35,6 +36,7 @@ class Articulos extends Controller
 
             // Load default view
             require_once APP . 'view/public/includes/header.php';
+            require_once APP . 'view/public/includes/menu.php';
             require_once APP . 'view/public/posts/articulo.php';
             require_once APP . 'view/public/includes/footer.php';              
         }

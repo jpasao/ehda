@@ -79,3 +79,6 @@ define('HOME', 'inicio');
 define('PRICES', 'precios');
 define('POSTS', 'articulos');
 define('CONTACT', 'contacto');
+define('LEGAL', 'avisolegal');
+define('PRIVACY', 'privacidad');
+define('COOKIES', 'cookies');

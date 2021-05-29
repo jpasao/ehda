@@ -50,7 +50,7 @@
 									<div class="col-12">										
 										<div id="contactEmailGroup" class="form-group">
                                             <input class="form-check-input" type="checkbox" value="" id="copyInCalendar">
-                                            <label class="form-check-label" for="copyInCalendar">Quiero recibir una copia en mi calendario de Google</label>
+                                            <label class="form-check-label" for="copyInCalendar">Quiero recibir una copia en mi calendario</label>
 										</div>
 									</div>
 								</div>   

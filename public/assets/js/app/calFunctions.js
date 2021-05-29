@@ -40,7 +40,7 @@ function buildHourBlocks(eventObj, isNext){
             }
             // Set event dates to google calendar object  
             startEventDate = new Date((event.range.start).addHours(startOffset)); 
-            endEventDate = new Date(endOffset);                        
+            endEventDate = new Date(startEventDate).addHours(1);                        
             return {
                 start: startEventDate,
                 end: endEventDate,
@@ -56,8 +56,9 @@ function buildHourBlocks(eventObj, isNext){
 // Build event object and add to calendar
 function addHourBlocks(gCalEvents){
     // Get array with events to add
-    var nextHourEventArray = buildHourBlocks(gCalEvents.calendar.state.eventStore.instances, true);
-    var prevHourEventArray = buildHourBlocks(gCalEvents.calendar.state.eventStore.instances, false);
+    var events = gCalEvents.context.eventStore.instances;
+    var nextHourEventArray = buildHourBlocks(events, true) || [];
+    var prevHourEventArray = buildHourBlocks(events, false) || [];
     // Add them to calendar and refresh view
     if (nextHourEventArray.length > 0){   
         var nextHourDataSource = {
@@ -68,77 +69,88 @@ function addHourBlocks(gCalEvents){
             events: prevHourEventArray,            
             id: 'prevHourSource'
         };        
+        nextHourLoaded = true;                         
         calendar.addEventSource(nextHourDataSource);      
         calendar.addEventSource(prevHourDataSource);           
-        nextHourLoaded = true;                         
     }
 }
 
 // Get google calendar events and start next hour building process
 function managePrevNextHours(isLoading){
     if (isLoading == false && nextHourLoaded == false){
-        // Get Google calendar events
-        var gCalEvents = calendar.getEventSourceById('gCalSource');
-        // Create next hour blocks
-        addHourBlocks(gCalEvents); 
-        // Move center description for mobile views
-        if ($(window).width() < 600) moveCenterDescription();
+        setTimeout(function(){
+            // Get Google calendar events
+            var gCalEvents = calendar.getEventSourceById('gCalSource');
+            // Create next hour blocks
+            addHourBlocks(gCalEvents); 
+            // Move center description for mobile views
+            if ($(window).width() < 600) moveCenterDescription();
+        }, 500);
     } 
 }
 
+function setEventTitle(arg){
+    var res = 'No Disponible';
+    var eventClass = arg.event.classNames;
+    if (eventClass.length > 0 && eventClass[0] == 'forbiddenHours'){
+        res = '';
+    }
+    return res;
+}
+
 // Manages text for events
-function renderTitle(info){    
-    var $element = $(info.el);    
-    var view = info.view.type;
-    var hasClassName = info.event.classNames.length > 0;
+// function renderTitle(info){    
+//     var $element = $(info.el);    
+//     var view = info.view.type;
+//     var hasClassName = info.event.classNames.length > 0;
 
-    if (hasClassName){
-       removeTitle($element, view);
-    }
-    else {
-        addDefaultTitle($element, view);
-    }
-}
+//     if (hasClassName){
+//        removeTitle($element, view);
+//     }
+//     else {
+//         addDefaultTitle($element, view);
+//     }
+// }
 
-// Add default title to events 
-function addDefaultTitle($element, view){
-    var title = ' No disponible';
-    var $existingElement;
+// // Add default title to events 
+// function addDefaultTitle($element, view){
+//     var title = ' No disponible';
+//     var $existingElement;
 
-    switch (view){
-        case 'dayGridMonth':
-            $element.find('span.fc-title').text(title);
-            break;
-        case 'timeGridWeek':
-        case 'timeGridDay':
-            $existingElement = $element.find('div.fc-time span').first();
-            $existingElement.text($existingElement.text() + title);
-            break;
-        case 'listMonth':
-            $element.find('td.fc-list-item-title a').first().text(title);            
-            break;                                
-    }
-}
+//     switch (view){
+//         case 'dayGridMonth':
+//             $element.find('span.fc-title').text(title);
+//             break;
+//         case 'timeGridWeek':
+//         case 'timeGridDay':
+//             $existingElement = $element.find('div.fc-time span').first();
+//             $existingElement.text($existingElement.text() + title);
+//             break;
+//         case 'listMonth':
+//             $element.find('td.fc-list-item-title a').first().text(title);            
+//             break;                                
+//     }
+// }
 
-// Remove text for next hour events
-function removeTitle($element, view){
-    var $existingElement;
+// // Remove text for next hour events
+// function removeTitle($element, view){
+//     var $existingElement;
 
-    switch (view){
-        case 'dayGridMonth':
-            $element.find('span.fc-time').text('');
-            break;
-        case 'timeGridWeek':
-        case 'timeGridDay':
-            $existingElement = $element.find('div.fc-time span').first();
-            $existingElement.text('');
-            break;
-        case 'listMonth':
-            $element.find('span.fc-event-dot').css('background-color', 'transparent');            
-            $element.find('td.fc-list-item-time').text('');
-            break;         
-    }
-}
+//     switch (view){
+//         case 'dayGridMonth':
+//             $element.find('span.fc-time').text('');
+//             break;
+//         case 'timeGridWeek':
+//         case 'timeGridDay':
+//             $existingElement = $element.find('div.fc-time span').first();
+//             $existingElement.text('');
+//             break;
+//         case 'listMonth':
+//             $element.find('span.fc-event-dot').css('background-color', 'transparent');            
+//             $element.find('td.fc-list-item-time').text('');
+//             break;         
+//     }
+// }
 
 // Manages to open link events in new tab
 function openInNewTab(info){

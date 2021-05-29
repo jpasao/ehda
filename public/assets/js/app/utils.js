@@ -64,7 +64,7 @@ function lastestDate(date1, date2){
 function suggestHour(cellDate){
     var res = cellDate;
     var today = moment().add(globalOffset, 'h').toDate();
-    var passed24Hour = calendar.optionsManager.computed.validRange(today).start;
+    var passed24Hour = calendar.currentData.options.validRange(today).start;
     res = lastestDate(passed24Hour, cellDate);
 
     return res;

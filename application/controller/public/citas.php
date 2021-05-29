@@ -16,6 +16,7 @@ class Citas extends Controller
         Logger::debug('Acceso a ' . $this->operationName, false);  
         // Load views
         require_once APP . 'view/public/includes/header.php';
+        require_once APP . 'view/public/includes/menu.php';
         require_once APP . 'view/public/calendar/index.php';
         require_once APP . 'view/public/includes/footer.php';
     }
