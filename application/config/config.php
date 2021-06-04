@@ -87,4 +87,4 @@ define('COOKIES', 'cookies');
 define('HOST', 'smtp.gmail.com');
 define('PORT', '465');
 define('USERNAME', 'trablete@gmail.com');
-define('USERPASS', '0livares');
+define('USERPASS', '***');
