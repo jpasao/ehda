@@ -7,6 +7,7 @@ class Articulos extends Controller
     {  
         try 
         {
+            ini_set('session.use_cookies', '0');
             require_once APP . 'core/utils.php';     
             require_once APP . 'core/logger.php';  
             Logger::debug('Acceso a ' . $this->operationName, false);  

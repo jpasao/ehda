@@ -70,9 +70,11 @@
 						</div>
 						<!--contact right bg-->
 						<div class="contact-right-bg">
-							<img src="<?php echo URL; ?>assets/img/contact-p-1.png" alt="">
+                            <img src="<?php echo URL; ?>assets/img/contact-p-1.png" alt="">
 						</div>
 					</div>
+                    <br/>
+                    <h6>Los datos recabados en este formulario pasarán a formar parte de El Hilo de Ariadna con el único fin de proprocionarte la información solicitada. Pasados 12 meses, éstos serán borrados, o antes si el usuario así lo solicita</h6>
 				</div>
 			</div>
 		</div>

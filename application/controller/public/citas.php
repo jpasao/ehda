@@ -5,6 +5,7 @@ class Citas extends Controller
     private $operationName = 'petición de cita';
     public function __construct()
     {
+        ini_set('session.use_cookies', '0');
         // Load Google authentication
         require_once APP . 'core/authentication.php';
         require_once APP . 'core/utils.php';       

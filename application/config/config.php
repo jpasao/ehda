@@ -82,3 +82,9 @@ define('CONTACT', 'contacto');
 define('LEGAL', 'avisolegal');
 define('PRIVACY', 'privacidad');
 define('COOKIES', 'cookies');
+
+// Email settings
+define('HOST', 'smtp.gmail.com');
+define('PORT', '465');
+define('USERNAME', 'trablete@gmail.com');
+define('USERPASS', '0livares');

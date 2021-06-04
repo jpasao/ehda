@@ -151,7 +151,7 @@ button, .btn-square {
     background-color: var(--dark-green);
 }
 /* Template custom settings */
-header{
+header#home{
     margin-bottom: 130px;
 }
 #footer-fixed{

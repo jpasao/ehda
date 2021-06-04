@@ -11,9 +11,11 @@ class Controller
     
     public function __construct()
     {
+        require_once APP . 'core/utils.php';    
         $this->openDBConnection();
         $this->loadModel();    
-        if(!isset($_SESSION)) 
+        $page = Utils::checkAdminPage();
+        if(!isset($_SESSION) && $page['isAdmin']) 
         { 
             session_start(); 
         }       

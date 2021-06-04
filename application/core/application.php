@@ -5,15 +5,14 @@ class Application
     private $url_controller = null;
     private $url_action = null;
     private $url_params = array();    
-    private $adminArray = array(ADMIN, LOGIN, POST, TAG, IMAGE, SPAREDATE, CLOSEDATE, PAGE_ADMIN_ERROR);
-    private $publicArray = array(HOME, APPOINTMENT, PRICES, POSTS, CONTACT, PAGE_ERROR, LEGAL, PRIVACY, COOKIES);
     private $isAdmin = null;
     private $isPublic = null;
     private $page = null;
     private $existController = null;
 
     public function __construct()
-    {
+    {  
+        require_once APP . 'core/utils.php';      
         $this->splitUrl();
         $this->checkPage();
 
@@ -113,24 +112,22 @@ class Application
     }  
     
     private function getErrorPage()
-    {
+    {        
         $errorPage = URL . PAGE_ERROR;
         $url = $this->getUrl();
         
         if (isset($url))
         {
-            foreach ($this->adminArray as $adminRoute)
+            $this->checkPage();
+            if ($this->isAdmin == true)
             {
-                if (strpos($url, $adminRoute) !== false)
-                {
-                    if(!isset($_SESSION)) 
-                    { 
-                        session_start(); 
-                    }                     
-                    $errorPage = URL . PAGE_ADMIN_ERROR;
-                    $_SESSION['adminerror'] = 'Se estaba visitando ' . $url;
-                    break;
-                }
+                if(!isset($_SESSION)) 
+                { 
+                    session_start(); 
+                }  
+            
+                $errorPage = URL . PAGE_ADMIN_ERROR;
+                $_SESSION['adminerror'] = 'Se estaba visitando ' . $url;                          
             }
             unset($url);
         }
@@ -139,36 +136,11 @@ class Application
     }
 
     private function checkPage()
-    {
-        $url = $this->getUrl();
-        $found = null;
-        if (isset($url))
-        {
-            $url =  explode('/', $url)[0];
-            foreach ($this->publicArray as $publicRoute)
-            {
-                if ($url === $publicRoute)
-                {
-                    $this->isPublic = true;
-                    $this->page = $publicRoute;
-                    break;
-                }
-            }
-            if ($this->isPublic !== true)
-            {                 
-                foreach ($this->adminArray as $adminRoute)
-                {
-                    if ($url === $adminRoute)
-                    {
-                        $this->isAdmin = true;
-                        $this->page = $adminRoute;
-                        break;
-                    }
-                }
-            }
-        }
-        unset($url);
-        unset($found);
+    { 
+        $page = Utils::checkAdminPage();
+        $this->isPublic = $page['isPublic'];
+        $this->isAdmin = $page['isAdmin'];
+        $this->page = $page['page'];
     }
 
     private function getUrl()

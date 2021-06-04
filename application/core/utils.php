@@ -4,6 +4,8 @@ class Utils
 {   
     private static $secondsInHour = 60 * 60;
     private static $timeZone = 'Europe/Madrid';
+    private static $adminArray = array(ADMIN, LOGIN, POST, TAG, IMAGE, SPAREDATE, CLOSEDATE, PAGE_ADMIN_ERROR);
+    private static $publicArray = array(HOME, APPOINTMENT, PRICES, POSTS, CONTACT, PAGE_ERROR, LEGAL, PRIVACY, COOKIES);
     
     // Returns datetime in d/m/Y H:i format    
     public static function BuildDate($date, $hour)
@@ -142,6 +144,57 @@ class Utils
         }        
     } 
 
+    // Check page is admin or not
+    public static function checkAdminPage()
+    {
+        $url = self::getUrl();
+        $url =  explode('/', $url)[0];
+        $page = array();
+        $page['isPublic'] = false;
+        $page['isAdmin'] = true;
+
+        if (isset($url))
+        {
+            foreach (self::$publicArray as $publicRoute)
+            {
+                if ($url === $publicRoute)
+                {
+                    $page['page'] = $publicRoute;
+                    $page['isPublic'] = true;
+                    $page['isAdmin'] = false;                    
+                    break;
+                }
+            }
+            if ($page['isPublic'] !== true)
+            {                 
+                foreach (self::$adminArray as $adminRoute)
+                {
+                    if ($url === $adminRoute)
+                    {
+                        $page['isPublic'] = false;
+                        $page['isAdmin'] = true;
+                        $page['page'] = $adminRoute;
+                        break;
+                    }
+                }
+            }
+        }
+        unset($url);
+        return $page;
+    }
+
+    private static function getUrl()
+    {
+        $res = null;
+
+        if (isset($_GET) && isset($_GET['url']))
+        {
+            $res = $_GET['url'];
+        }
+
+        return $res;
+    }    
+
     // Redirect to admin error page
     public function redirectToAdminErrorPage($errorMessage, $exception)
     {
@@ -153,13 +206,13 @@ class Utils
         header('location: ' . URL . PAGE_ADMIN_ERROR); 
     } 
 
-        // Redirect to public error page
-        public function redirectToErrorPage($errorMessage, $exception)
-        {
-            require_once APP . 'core/logger.php';
-    
-            $message = 'Excepción en ' . $errorMessage . ': ' . $exception->getMessage();
-            Logger::error($message, false);            
-            header('location: ' . URL . PAGE_ERROR); 
-        } 
+    // Redirect to public error page
+    public function redirectToErrorPage($errorMessage, $exception)
+    {
+        require_once APP . 'core/logger.php';
+
+        $message = 'Excepción en ' . $errorMessage . ': ' . $exception->getMessage();
+        Logger::error($message, false);            
+        header('location: ' . URL . PAGE_ERROR); 
+    } 
 }
