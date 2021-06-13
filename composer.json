@@ -11,6 +11,6 @@
         "google/auth": "^1.0",
         "google/apiclient": "^2.0",
         "google/apiclient-services": "~0.13",
-        "phpmailer/phpmailer": "^6.2"
+        "phpmailer/phpmailer": "^6.4"
     }
 }

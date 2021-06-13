@@ -18,7 +18,7 @@
                         <p>El responsable del tratamiento de los datos personales recogidos en El Hilo de Ariadna es: Verónica Cabrera Collado, con NIF: 45756493V (en adelante, Responsable del tratamiento). Sus datos de contacto son los siguientes:</p>
                         <h4>Dirección: <span>C/ Marie Curie, 5. Umbrete - Sevilla</span></h4>
                         <h4>Teléfono de contacto: <span>630335814</span></h4>
-                        <h4>Email de contacto: <span>veronica@elhilodeariadnatcc.es</span></h4>
+                        <h4>Email de contacto: <span>veronica<span class="gotcha">lalala</span>@elhilodeariadnatcc.es</span></h4>
                         <h4 class="margin-top-project">Registro de Datos de Carácter Personal</h4>
                         <p>En cumplimiento de lo establecido en el RGPD y la LOPD-GDD, le informamos que los datos personales recabados por El Hilo de Ariadna, mediante los formularios extendidos en sus páginas quedarán incorporados y serán tratados en nuestro fichero con el fin de poder facilitar, agilizar y cumplir los compromisos establecidos entre El Hilo de Ariadna y el Usuario o el mantenimiento de la relación que se establezca en los formularios que este rellene, o para atender una solicitud o consulta del mismo. Asimismo, de conformidad con lo previsto en el RGPD y la LOPD-GDD, salvo que sea de aplicación la excepción prevista en el artículo 30.5 del RGPD, se mantiene un registro de actividades de tratamiento que especifica, según sus finalidades, las actividades de tratamiento llevadas a cabo y las demás circunstancias establecidas en el RGPD.</p>
                         <h4 class="margin-top-project">Principios aplicables al tratamiento de los datos personales</h4>
@@ -77,7 +77,7 @@
                         <p>Esta solicitud y todo otro documento adjunto podrá enviarse a la siguiente dirección y/o correo electrónico:</p>
                         <ul class="legal">
                             <li>Dirección postal: C/ Marie Curie, 5. Umbrete - Sevilla</li>
-                            <li>Correo electrónico: lopd@elhilodeariadnatcc.es</li>
+                            <li>Correo electrónico: lopd<span class="gotcha">lalala</span>@elhilodeariadnatcc.es</li>
                         </ul>
                         <h4 class="margin-top-project">Enlaces a sitios web de terceros</h4>
                         <p>El Sitio Web puede incluir hipervínculos o enlaces que permiten acceder a páginas web de terceros distintos de El Hilo de Ariadna, y que por tanto no son operados por El Hilo de Ariadna. Los titulares de dichos sitios web dispondrán de sus propias políticas de protección de datos, siendo ellos mismos, en cada caso, responsables de sus propios ficheros y de sus propias prácticas de privacidad.</p>

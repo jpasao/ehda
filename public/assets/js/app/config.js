@@ -11,3 +11,4 @@ var globalOffset = 2;
 var addEventEndPoint = url + 'citas/add';
 var loginEndPoint = url + 'login/signin';
 var logoutEndPoint = url + 'login/signout';
+var sendContactMail = url + 'contacto/sendContactMail';

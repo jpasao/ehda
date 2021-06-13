@@ -16,7 +16,7 @@
 							</div>
 							<div class="info-content">
 								<h6>Correo electrónico</h6>
-								<span>info@elhilodeariadnatcc.com</span>
+								<span>info<span class="gotcha">lalala</span>@elhilodeariadnatcc.com</span>
 							</div>
 						</div>
 					</div>
@@ -58,13 +58,14 @@
 							<h3>Dinos algo</h3>
 						</div>
 						<div class="contact-form">
-							<form action="#">
-								<input type="text" placeholder="Nombre">
-								<input class="margin-top-lb-30 margin-top-sb-30" type="text" placeholder="Apellidos">
-								<input type="email" placeholder="Correo electrónico">
-								<textarea placeholder="Tu mensaje"></textarea>
+							<form id="contactForm">
+								<input type="text" placeholder="Nombre" name="name" id="name" required>
+								<input class="margin-top-lb-30 margin-top-sb-30" type="text" placeholder="Apellidos" name="surname" id="surname">
+								<input type="email" placeholder="Correo electrónico" name="email" id="email" required>
+								<textarea placeholder="Tu mensaje" name="message" id="message" required></textarea>
+                                <input type="text" name="gotcha" class="gotcha" id="gotcha" value="">
 								<div class="send-btn">
-									<input type="submit" value="enviar" id="formsend">
+									<input type="submit" value="enviar" id="formsend" name="save">
 								</div>
 							</form>
 						</div>

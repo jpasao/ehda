@@ -9,7 +9,7 @@
                         <p>La titularidad de este sitio web, elhilodeariadnatcc.es, (en adelante, Sitio Web) la ostenta: Verónica Cabrera Collado, con NIF: 45756493V, y cuyos datos de contacto son:</p>
                         <h4>Dirección: <span>C/ Marie Curie, 5. Umbrete - Sevilla</span></h4>
                         <h4>Teléfono de contacto: <span>630335814</span></h4>
-                        <h4>Email de contacto: <span>veronica@elhilodeariadnatcc.es</span></h4>
+                        <h4>Email de contacto: <span>veronica<span class="gotcha">lalala</span>@elhilodeariadnatcc.es</span></h4>
                         <h4>Título académico: <span>Licenciado en Psicología</span></h4>
                         <h4>Estado de expedición del título: <span>España</span></h4>
                         <h4>Colegio profesional: <span>Colegio Oficial de Psicología de Andalucía Occidental</span></h4>

@@ -41,8 +41,10 @@ class Application
             }
 
             // Load controller
-            require_once APP . 'controller/' . $controllerPath . $this->url_controller . '.php';
-            $this->url_controller = new $this->url_controller();
+            if ($this->url_controller != 'assets'){
+                require_once APP . 'controller/' . $controllerPath . $this->url_controller . '.php';
+                $this->url_controller = new $this->url_controller();
+            }
 
             if (method_exists($this->url_controller, $this->url_action)) 
             {
@@ -140,7 +142,7 @@ class Application
         $page = Utils::checkAdminPage();
         $this->isPublic = $page['isPublic'];
         $this->isAdmin = $page['isAdmin'];
-        $this->page = $page['page'];
+        $this->page = isset($page['page']) ? $page['page'] : null;
     }
 
     private function getUrl()

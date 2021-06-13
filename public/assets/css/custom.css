@@ -157,6 +157,10 @@ header#home{
 #footer-fixed{
     margin-top: 100px;
 }
+/*Hidden field in contact form*/
+.gotcha { 
+    display: none !important; 
+}
 /*Legal pages*/
 ul.legal {
     list-style-type: circle;

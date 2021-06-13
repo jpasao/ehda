@@ -79,12 +79,14 @@ define('HOME', 'inicio');
 define('PRICES', 'precios');
 define('POSTS', 'articulos');
 define('CONTACT', 'contacto');
+define('SENDCONTACTMAIL', CONTACT . '/sendContactMail');
 define('LEGAL', 'avisolegal');
 define('PRIVACY', 'privacidad');
 define('COOKIES', 'cookies');
 
 // Email settings
 define('HOST', 'smtp.gmail.com');
-define('PORT', '465');
-define('USERNAME', 'trablete@gmail.com');
+define('PORT', '587');//'465');
+define('USERADDRESS', 'jpsolivares@gmail.com');
 define('USERPASS', '***');
+define('USERNAME', 'Pablito');

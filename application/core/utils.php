@@ -155,26 +155,28 @@ class Utils
 
         if (isset($url))
         {
-            foreach (self::$publicArray as $publicRoute)
-            {
-                if ($url === $publicRoute)
+            if ($url != 'assets') {
+                foreach (self::$publicArray as $publicRoute)
                 {
-                    $page['page'] = $publicRoute;
-                    $page['isPublic'] = true;
-                    $page['isAdmin'] = false;                    
-                    break;
-                }
-            }
-            if ($page['isPublic'] !== true)
-            {                 
-                foreach (self::$adminArray as $adminRoute)
-                {
-                    if ($url === $adminRoute)
+                    if ($url === $publicRoute)
                     {
-                        $page['isPublic'] = false;
-                        $page['isAdmin'] = true;
-                        $page['page'] = $adminRoute;
+                        $page['page'] = $publicRoute;
+                        $page['isPublic'] = true;
+                        $page['isAdmin'] = false;                    
                         break;
+                    }
+                }
+                if ($page['isPublic'] !== true)
+                {                 
+                    foreach (self::$adminArray as $adminRoute)
+                    {
+                        if ($url === $adminRoute)
+                        {
+                            $page['isPublic'] = false;
+                            $page['isAdmin'] = true;
+                            $page['page'] = $adminRoute;
+                            break;
+                        }
                     }
                 }
             }
@@ -215,4 +217,89 @@ class Utils
         Logger::error($message, false);            
         header('location: ' . URL . PAGE_ERROR); 
     } 
+
+    public static function sendMail($email, $subject, $body, $page)
+    {
+        try {     
+            // Validations
+            $valid = true;
+            $res = false;
+  
+            if (self::checkHeaderInjection(array($email, $subject, $body)) == true)
+            {
+                Logger::debug('Inyección en datos de cabecera en formulario de ' . $page, true);
+                $valid = false; 
+            }                              
+            if (self::isValidEmail($email) == false)
+            {
+                Logger::debug('Email no válido en formulario de ' . $page, true);
+                $valid = false;               
+            }
+            if (self::checkNewLine($body) == false)
+            {
+                Logger::debug('Mensaje con saltos de línea en formulario de ' . $page, true);
+                $valid = false;               
+            }     
+
+            if ($valid)
+            {
+                $mail = new PHPMailer\PHPMailer\PHPMailer();
+                $mail->isSMTP();
+                $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER; //SMTP::DEBUG_OFF
+                $mail->CharSet = 'UTF8';
+                $mail->Encoding = 'quoted-printable';
+                $mail->Host = HOST;
+                $mail->Port = PORT;
+                $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->SMTPAuth = true;
+                $mail->Username = USERADDRESS;
+                $mail->Password = USERPASS;
+                $mail->setFrom(USERADDRESS, USERNAME);
+                $mail->addReplyTo(USERADDRESS, USERNAME);
+                $mail->addAddress($email, 'Destinatario');
+                $mail->Subject = $subject;
+                $mail->msgHTML($body);
+    
+                if (!$mail->send()) {
+                    Logger::debug('Error al enviar correo: ' . $mail->ErrorInfo , false);
+                } 
+                else {
+                    Logger::debug('Correo enviado con éxito', false);
+                    $res = true;
+                }
+            }
+            
+        } catch (Exception $e) {
+            self::redirectToErrorPage('envío de email', $e);
+        }
+        return $res;
+    }
+
+    private static function isValidEmail($email) {
+        return preg_match('#^[a-z0-9.!\#$%&\'*+-/=?^_`{|}~]+@([0-9.]+|([^\s]+\.+[a-z]{2,6}))$#si', $email);
+    }
+
+    private static function checkNewLine($string) {
+        if (preg_match("/(%0A|%0D|\\n+|\\r+)/i", $string) != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static function checkPostRequest() {
+        if ($_SERVER['REQUEST_METHOD'] != 'POST'){
+            return false;
+        }
+        return true;
+    }
+
+    private static function checkHeaderInjection($fields) {
+        $injection = false;
+        for ($n = 0; $n < count($fields); $n++) {
+            if (preg_match("/%0A/", $fields[$n]) || preg_match("/%0D/", $fields[$n]) || preg_match("/\r/", $fields[$n]) || preg_match("/\n/", $fields[$n])) {
+                $injection = true;
+            }
+        }
+        return $injection;
+    }
 }
