@@ -46,8 +46,9 @@
                         <p>En el momento en que se obtengan los datos personales, se informará al Usuario acerca del plazo durante el cual se conservarán los datos personales o, cuando eso no sea posible, los criterios utilizados para determinar este plazo.</p>
                         <h4 class="margin-top-project">Destinatarios de los datos personales</h4>
                         <p>Los datos personales que el Usuario introduzca en el formulario del calendario del apartado "Citas" del Sitio Web serán compartidos con el siguiente destinatario con el objeto de que aparezcan en un calendario de uso interno:</p>
-                        <p>Google Spain, S. L. Plaza Pablo Ruiz Picasso, I. Madrid 28020</p>
+                        <p><i>Google Spain, S. L. Plaza Pablo Ruiz Picasso, I. Madrid 28020</i></p>
                         <p>Dichos datos no estarán disponibles al resto de visitantes. El Responsable del tratamiento no transferirá datos personales a ningún tercer país u organización internacional.</p>
+                        <p>El presente Sitio Web se aloja en un servidor ubicado en Europa, así que los datos serán tratados de conformidad al grado de protección que exige la ley europea. La dirección del prestador de dicho servicio es <i>Hostinger International Ltd. 61 Lordou Vironos Street. 6023 Larnaca, Cyprus</i></p>
                         <h4 class="margin-top-project">Datos personales de menores de edad</h4>
                         <p>Respetando lo establecido en los artículos 8 del RGPD y 7 de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales, solo los mayores de 14 años podrán otorgar su consentimiento para el tratamiento de sus datos personales de forma lícita por El Hilo de Ariadna. Si se trata de un menor de 14 años, será necesario el consentimiento de los padres o tutores para el tratamiento, y este solo se considerará lícito en la medida en la que los mismos lo hayan autorizado.</p>
                         <h4 class="margin-top-project">Secreto y seguridad de los datos personales</h4>

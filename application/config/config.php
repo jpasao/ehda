@@ -25,7 +25,7 @@ define('DB_CHARSET', 'utf8');
 
 // Google Calendar Api
 define('SCOPE', 'https://www.googleapis.com/auth/calendar.events');
-define('KEYLOCATION', APP . 'core/client_secret.json');
+define('KEYLOCATION', APP . 'core/ehda-204218-ab3921e6ba53.json');
 define('CLIENTID', '116098602185754580577');
 define('EMAIL', 'ehda-calendar@ehda-204218.iam.gserviceaccount.com');
 define('CALENDARID', 'trablete@gmail.com');
