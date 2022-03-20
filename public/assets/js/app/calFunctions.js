@@ -98,60 +98,6 @@ function setEventTitle(arg){
     return res;
 }
 
-// Manages text for events
-// function renderTitle(info){    
-//     var $element = $(info.el);    
-//     var view = info.view.type;
-//     var hasClassName = info.event.classNames.length > 0;
-
-//     if (hasClassName){
-//        removeTitle($element, view);
-//     }
-//     else {
-//         addDefaultTitle($element, view);
-//     }
-// }
-
-// // Add default title to events 
-// function addDefaultTitle($element, view){
-//     var title = ' No disponible';
-//     var $existingElement;
-
-//     switch (view){
-//         case 'dayGridMonth':
-//             $element.find('span.fc-title').text(title);
-//             break;
-//         case 'timeGridWeek':
-//         case 'timeGridDay':
-//             $existingElement = $element.find('div.fc-time span').first();
-//             $existingElement.text($existingElement.text() + title);
-//             break;
-//         case 'listMonth':
-//             $element.find('td.fc-list-item-title a').first().text(title);            
-//             break;                                
-//     }
-// }
-
-// // Remove text for next hour events
-// function removeTitle($element, view){
-//     var $existingElement;
-
-//     switch (view){
-//         case 'dayGridMonth':
-//             $element.find('span.fc-time').text('');
-//             break;
-//         case 'timeGridWeek':
-//         case 'timeGridDay':
-//             $existingElement = $element.find('div.fc-time span').first();
-//             $existingElement.text('');
-//             break;
-//         case 'listMonth':
-//             $element.find('span.fc-event-dot').css('background-color', 'transparent');            
-//             $element.find('td.fc-list-item-time').text('');
-//             break;         
-//     }
-// }
-
 // Manages to open link events in new tab
 function openInNewTab(info){
     var eventObj = info.event;

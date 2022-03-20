@@ -25,10 +25,10 @@ define('DB_CHARSET', 'utf8');
 
 // Google Calendar Api
 define('SCOPE', 'https://www.googleapis.com/auth/calendar.events');
-define('KEYLOCATION', APP . 'core/ehda-204218-ab3921e6ba53.json');
-define('CLIENTID', '116098602185754580577');
-define('EMAIL', 'ehda-calendar@ehda-204218.iam.gserviceaccount.com');
-define('CALENDARID', 'trablete@gmail.com');
+define('KEYLOCATION', APP . 'core/ehda-344709-1827d3084ce6.json');
+define('CLIENTID', '106102540117816848886');
+define('EMAIL', 'ehda-calendar@ehda-344709.iam.gserviceaccount.com');
+define('CALENDARID', 'vr.cabrera@gmail.com');
 putenv('GOOGLE_APPLICATION_CREDENTIALS=' . KEYLOCATION);
 
 // Admin routes
